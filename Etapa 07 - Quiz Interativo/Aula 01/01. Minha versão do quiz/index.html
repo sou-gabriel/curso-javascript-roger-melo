@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/styles/global.css">
+  <link rel="stylesheet" href="./assets/styles/page-header.css">
+  <link rel="stylesheet" href="./assets/styles/page-quiz.css">
+  <link rel="stylesheet" href="./assets/styles/page-footer.css">
+  <link rel="stylesheet" href="./assets/styles/page-animation.css">
+  <link rel="stylesheet" href="./assets/styles/responsiveness.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap" rel="stylesheet">
+  <title>Quiz Interativo | Frameworks</title>
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <h2>Quiz Interativo | Frameworks</h2>
+
+      <nav>
+        <ul class="contact-menu">
+          <li>            
+            <a href="#">
+              <img class="nav-icon" src="./assets/icons/github.svg" alt="GitHub">
+              Repositório do projeto
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <img class="nav-icon" src="./assets/icons/linkedin.svg" alt="Linkedin">
+              Perfil no Linkedin
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main> 
+    <form class="quiz-form container bad-score">
+      <fieldset>
+        <legend>
+          <h2>Você consegue identificar em qual linguagem os frameworks são baseados ?</h2>
+        </legend>
+
+        <div class="question">
+          <p>1. React Native é um framework popular de ...</p>
+
+          <div> 
+            <input type="radio" name="inputQuestion1" valu="A">
+            <label for="inputQuestion1">PHP</label>
+          </div>
+
+          <div> 
+            <input type="radio" name="inputQuestion1" value="B">
+            <label for="inputQuestion1">JavaScript</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>2. Laravel é bastate utilizado por programadores em ...</p>
+
+          <div>
+            <input type="radio" name="inputQuestion2" value="A">
+            <label for="inputQuestion2">C#</label>
+          </div>
+
+          <div>
+            <input type="radio" name="inputQuestion2" value="B">
+            <label for="inputQuestion2">PHP</label>
+          </div>          
+        </div>
+
+        <div class="question">
+          <p>3. Django é um framework baseado em ...</p>
+
+          <div>
+            <input type="radio" name="inputQuestion3" value="A">
+            <label for="inputQuestion3">Python</label>
+          </div>
+
+          <div>
+            <input type="radio" name="inputQuestion3" value="B">
+            <label for="inputQuestion3">Java</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>4. O Flutter é um framework baseado em ...</p>
+
+          <div>
+            <input type="radio" name="inputQuestion4" value="A">
+            <label for="inputQuestion4">Dart</label>
+          </div>
+
+          <div>
+            <input type="radio" name="inputQuestion4" value="B">
+            <label for="inputQuestion4">JavaScript</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <p class="feedback"></p>
+
+      <button class="btn-send-answers">Enviar respostas</button>
+    </form>
+  </main>
+
+  <footer class="page-footer">    
+    <p class="container">Feito com &#x2764;&#xFE0F; por Gabriel Ramos Nogueira</p>
+  </footer>
+</body>
+</html>

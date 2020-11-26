@@ -1,0 +1,40 @@
+.page-header {
+  background-color: var(--header-background);
+  padding: 40px;
+}
+
+.page-header h2 {
+  text-align: center;
+  color: var(--bright-color);
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+.nav-icon {
+  width: 22px;
+  margin-right: 5px;
+  background-color: var(--bright-color);
+}
+
+.contact-menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.contact-menu li {
+  margin-right: 10px;
+}
+
+.contact-menu li a {
+  width: 220px;
+  background-color: var(--bright-color);
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
