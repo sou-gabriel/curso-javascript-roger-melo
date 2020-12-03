@@ -6,6 +6,8 @@ const correctAnswers = ['D', 'C', 'B', 'A']
 let score = 0
 
 const getUserAnswers = () => {
+  const userAnswers = correctAnswers.map((_, index) => {
+    return form[`inputQuestion${index + 1}`].value
   })
 
   return userAnswers
@@ -13,6 +15,8 @@ const getUserAnswers = () => {
 
 const calculateFinalScore = userAnswers => {
   userAnswers.forEach((userAnswer, index) => {
+    if (userAnswer === correctAnswers[index]) {
+      score += 20
     }
 
     return accumulator
