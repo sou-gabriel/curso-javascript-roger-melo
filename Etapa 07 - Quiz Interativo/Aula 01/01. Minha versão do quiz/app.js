@@ -6,11 +6,6 @@ const correctAnswers = ['D', 'C', 'B', 'A']
 let score = 0
 
 const getUserAnswers = () => {
-  let userAnswers = []
-
-  correctAnswers.forEach((_, index) => {
-    const userAnswer = form[`inputQuestion${index + 1}`].value
-    userAnswers.push(userAnswer)
   })
 
   return userAnswers
@@ -18,11 +13,10 @@ const getUserAnswers = () => {
 
 const calculateFinalScore = userAnswers => {
   userAnswers.forEach((userAnswer, index) => {
-    const isUserAnswerCorrect = userAnswer === correctAnswers[index]
-    if (isUserAnswerCorrect) {
-      score += 25
     }
-  })
+
+    return accumulator
+  }, 0)
 }
 
 const showFinalScore = () => {
