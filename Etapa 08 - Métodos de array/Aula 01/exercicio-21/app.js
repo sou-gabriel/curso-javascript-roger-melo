@@ -7,7 +7,9 @@
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const oddNumbers = randomNumbers.filter(number => number % 2 === 1)
+const getOddNumbers = number => number % 2 === 1
+
+const oddNumbers = randomNumbers.filter(getOddNumbers)
 
 console.log(oddNumbers)
 
@@ -19,15 +21,13 @@ console.log(oddNumbers)
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const amountOfNumbersLessThan501 = crazyNumbers.reduce((accumulator, number) => {
-  if (number < 501) {
-    accumulator++
-  }
+const getNumbersLessThan501 = (accumulator, number) => {
+  return number < 501 ? ++accumulator : accumulator
+}
 
-  return accumulator
-}, 0)
+const numbersLessThan501 = crazyNumbers.reduce(getNumbersLessThan501, 0)
 
-console.log(amountOfNumbersLessThan501)
+console.log(numbersLessThan501)
 
 /*
   03
@@ -67,12 +67,11 @@ const cart = [
   - Nome 3
 */
 
-const gameList = cart.reduce((accumulator, { name }) => {
-  accumulator += `- ${name}\n`
-  return accumulator
+const productList = cart.reduce((accumulator, { name }) => {
+  return `${accumulator}- ${name}\n`
 }, '')
 
-console.log(gameList)
+console.log(productList)
 
 
 /*
@@ -127,9 +126,9 @@ const tvShows = [
   { name: 'Watchmen', releaseYear: 2019 }
 ]
 
-const series = tvShows.map(({ name }) => name)
+const showNames = tvShows.map(({ name }) => name)
 
-console.log(series)
+console.log(showNames)
 
 /*
   07
