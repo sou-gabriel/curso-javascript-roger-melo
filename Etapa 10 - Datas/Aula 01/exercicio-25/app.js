@@ -57,8 +57,8 @@ console.log(past)
   - Exiba, no console, a hora do objeto que você acabou de criar.
 */
 
-const pastHour = past.getHours()
-console.log(pastHour)
+const pastHours = past.getHours()
+console.log(pastHours)
 
 /*
   06
@@ -68,7 +68,7 @@ console.log(pastHour)
 */
 
 
-const future = new Date('Dec 25 2020 00:00:00')
+const future = new Date('December 25 2020 00:00:00')
 console.log(future)
 
 /*
