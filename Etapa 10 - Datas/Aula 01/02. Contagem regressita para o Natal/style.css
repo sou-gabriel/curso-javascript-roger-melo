@@ -1,0 +1,8 @@
+.count-container {
+  font-size: 2.5rem;
+  background-color: #d2d2d2;
+  width: 220px;
+  text-align: center;
+  margin: 200px auto 0;
+  border-radius: 8px;
+}
