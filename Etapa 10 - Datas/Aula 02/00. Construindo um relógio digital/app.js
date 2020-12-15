@@ -8,7 +8,7 @@ const getClockHTML = (hours, minutes, seconds) => {
   `
 }
 
-const showClock = () => {
+const updateClock = () => {
   const present = new Date()
 
   const hours = present.getHours()
@@ -18,4 +18,4 @@ const showClock = () => {
   clockContainer.innerHTML = getClockHTML(hours, minutes, seconds) 
 }
 
-setInterval(showClock, 1000)
+setInterval(updateClock, 1000)
