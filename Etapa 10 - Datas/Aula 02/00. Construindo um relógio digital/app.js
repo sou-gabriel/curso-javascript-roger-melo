@@ -1,27 +1,21 @@
 const clockContainer = document.querySelector('.clock-container')
 
-const getClock = () => {
-  const present = new Date()
-
-  return { 
-    hours: present.getHours(), 
-    minutes: present.getMinutes(), 
-    seconds: present.getSeconds() 
-  }
+const getClockHTML = (hours, minutes, seconds) => {
+  return `
+    <span>${formatTimeUnit(hours)}</span> :
+    <span>${formatTimeUnit(minutes)}</span> :
+    <span>${formatTimeUnit(seconds)}</span>
+  `
 }
 
-const addZero = value => String(value).length === 1 ? `0${value}` : value
-
 const showClock = () => {
-  const { hours, minutes, seconds } = getClock()
+  const present = new Date()
 
-  const clockHTML = `
-    <span>${addZero(hours)}</span> :
-    <span>${addZero(minutes)}</span> :
-    <span>${addZero(seconds)}</span>
-  `
+  const hours = present.getHours()
+  const minutes = present.getMinutes()
+  const seconds = present.getSeconds() 
 
-  clockContainer.innerHTML = clockHTML
+  clockContainer.innerHTML = getClockHTML(hours, minutes, seconds) 
 }
 
 setInterval(showClock, 1000)
