@@ -1,5 +1,7 @@
 const clockContainer = document.querySelector('.clock-container')
 
+const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit 
+
 const getClockHTML = (hours, minutes, seconds) => {
   return `
     <span>${formatTimeUnit(hours)}</span> :

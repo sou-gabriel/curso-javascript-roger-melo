@@ -30,40 +30,41 @@ console.log(formatDate(present))
 
 const weekDays = [
   'domingo',
-  'segunda-feira', 
-  'terça-feira', 
-  'quarta-feira', 
-  'quinta-feira', 
-  'sexta'
+  'segunda-feira',
+  'terça-feira',
+  'quarta-feira',
+  'quinta-feira',
+  'sexta-feira',
+  'sábado'
 ]
 
-const monthDays = [
-  'janeiro', 
-  'fevereiro', 
-  'março', 
-  'abril', 
+const months = [
+  'janeiro',
+  'fevereiro',
+  'março',
+  'abril',
   'maio', 
-  'junho', 
-  'julho', 
-  'agosto', 
-  'setembro', 
-  'outubro', 
-  'novembro', 
+  'junho',
+  'julho',
+  'agosto',
+  'setembro',
+  'outubro',
+  'novembro',
   'dezembro'
 ]
 
-const formatDateAndTime = date => {
+const formatDateInfo = date => {
   const hours = formatTimeUnit(date.getHours())
-  const minutes = formatTimeUnit(date.getHours())
+  const minutes = formatTimeUnit(date.getMinutes())
   const weekDay = weekDays[date.getDay()]
   const day = date.getDate()
-  const month = monthDays[date.getMonth()]
-  const year = date.getFullYear()
+  const monthName = months[date.getMonth()]
+  const year = date.getFullYear() 
 
-  return `${hours}:${minutes} - ${weekDay}, ${day} de ${month} de ${year}`
+  return `${hours}:${minutes} - ${weekDay}, ${day} de ${monthName} de ${year}`
 }
 
-console.log(formatDateAndTime(present))
+console.log(formatDateInfo(present))
 
 /*
   03
