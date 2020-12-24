@@ -19,12 +19,14 @@
 const request = new XMLHttpRequest()
 
 request.addEventListener('readystatechange', () => {
-  if (request.readyState === 4 && request.status === 200) {
+  const isRequestOk = request.readyState === 4 && request.status === 200
+  const isRequestNotOk = request.readyState === 4
+  if (isRequestOk) {
     console.log(request.responseText)
     return
   }
 
-  if (request.readyState === 4) {
+  if (isRequestNotOk) {
     console.log('Não foi possível obter os dados do pokémon')
   }
 })
@@ -49,14 +51,16 @@ request.send()
 
 let person = {
   name: 'Gabriel',
-  lastName: 'Nogueira',
+  lastName: 'Ramos',
   gender: 'Masculino',
   age: 19,
-  height: 1.75,
+  height: 1.73,
   weight: 55,
   isWalking: false,
-  walkingDistance: 0
+  metersWalked: 0
 }
+
+console.log(person)
 
 /*
   03
@@ -67,9 +71,15 @@ let person = {
   - Após criar o método, adicione 5 anos à idade do objeto.
 */
 
-person.incrementAge = () => person.age++
-person.age += 5
-// console.log(person.age)
+person.incrementAge = () => {
+  person.age++
+}
+
+for (let i = 0; i < 5; i++) {
+  person.incrementAge()
+}
+
+console.log(person.age)
 
 /*
   04
@@ -82,17 +92,16 @@ person.age += 5
     método 4x, com diferentes metragens passadas por parâmetro.
 */
 
-person.calculateWalkingDistance = metersWalked => {
+person.calculateMeters = meters => {
+  person.metersWalked += meters
   person.isWalking = true
-  person.walkingDistance += metersWalked
 }
 
-person.calculateWalkingDistance(15)
-person.calculateWalkingDistance(5)
-person.calculateWalkingDistance(10)
-person.calculateWalkingDistance(35)
+const meters = [13, 22, 45, 20]
 
-// console.log(person.isWalking, person.walkingDistance)
+meters.forEach(meter => person.calculateMeters(meter))
+
+console.log(person.metersWalked, person.isWalking)
 
 /*
   05
@@ -111,27 +120,21 @@ person.calculateWalkingDistance(35)
       "metro", no singular.
 */
 
-const getWordInSingularOrPlural = (quantity, singular, plural) => 
+const getSingularOrPlural = (quantity, singular, plural) => 
   quantity === 1 ? singular : plural
 
-const getMaleOrFemalePronun = (gender, female, male) => 
-  gender === 'Feminino' ? female : male
+person.introduction = () => {
+  const pronumFemaleOrMale = person.gender === 'Feminino' ? 'a' : 'o'
+  const ageSingularOrPlural = getSingularOrPlural(person.age, 'ano', 'anos')
+  const walkedMetersSingularOrPlural = 
+    getSingularOrPlural(person.metersWalked, 'metro', 'metros')
+  const heightMetersSingularOrPlural =
+    getSingularOrPlural(person.height, 'metro', 'metros')
 
-const getUserInfoMessage = () => {
-  const pronunFemaleOrMale = getMaleOrFemalePronun(person.gender, 'a', 'o')
-  const ageSingularOrPlural =
-    getWordInSingularOrPlural(person.age, 'ano', 'anos')
-  const meterSingularOrPlural = 
-    getWordInSingularOrPlural(person.walkingDistance, 'metro', 'metros')
-
-  return `Oi. Eu sou ${pronunFemaleOrMale} ${person.name}, tenho ${person.age} ${ageSingularOrPlural}, ${person.height} metros de altura, peso ${person.weight} quilos e, só hoje, eu já caminhei ${person.walkingDistance} ${meterSingularOrPlural}.`
+  return `Oi. Eu sou ${pronumFemaleOrMale} ${person.name} ${person.lastName}, tenho ${person.age} ${ageSingularOrPlural}, ${person.height} ${heightMetersSingularOrPlural} de altura, peso ${person.weight} quilos e, só hoje, eu já caminhei ${person.metersWalked} ${walkedMetersSingularOrPlural}.`
 }
 
-person.showUserInfo = () => {
-  return getUserInfoMessage()
-}
-
-console.log(person.showUserInfo())
+console.log(person.introduction())
 
 /*
   06
@@ -149,8 +152,8 @@ const checkValue = value => {
   return value ? true : false
 }
 
-const falsyValues = [false, 0, '', ``,"", NaN, undefined, null]
-const truthyValues = ['JavaScript', {}, [], 1, 'Hello', () => {}, '2']
+const falsyValues = [false, 0, '', NaN, undefined, null]
+const truthyValues = ['JavaScript', {}, [], 1, 'Hello', () => {}, 'false']
 
 falsyValues.forEach(falsyValue => console.log(checkValue(falsyValue)))
 truthyValues.forEach(truthyValue => console.log(checkValue(truthyValue)))
@@ -174,7 +177,7 @@ truthyValues.forEach(truthyValue => console.log(checkValue(truthyValue)))
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
 
-const fetchBook = bookName => {
+const getBook = bookName => {
   const books = {
     'O milagre da manhã': { 
       pages: 196,
@@ -193,7 +196,8 @@ const fetchBook = bookName => {
     }
   }
 
-  return bookName ? books[bookName] : books
+  return books[bookName] || books
 }
 
-console.log(fetchBook('O milagre da manhã'))
+console.log(getBook('O milagre da manhã'))
+console.log(getBook())
