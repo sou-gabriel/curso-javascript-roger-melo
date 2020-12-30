@@ -21,8 +21,8 @@ const getPokemon = (url, callback) => {
     const isRequestNotOk = request.readyState === 4
 
     if (isRequestOk) {
-      const { name } = JSON.parse(request.responseText)
-      callback(null, `Pokémon obtido: ${name}`)
+      const data = JSON.parse(request.responseText)
+      callback(null, `Pokémon obtido: ${data.name}`)
       return
     }
 
@@ -35,33 +35,27 @@ const getPokemon = (url, callback) => {
   request.send()
 }
 
-getPokemon('https://pokeapi.co/api/v2/pokemon/bulbasaur', (error, data) => {
+const logPokemonMessage = (error, data) => {
   if (error) {
     console.log(error)
     return
-  }
-
+  }  
   console.log(data)
-  getPokemon('https://pokeapi.co/api/v2/pokemon/charmander', (error, data) => {
-    if (error) {
-      console.log(error)
-      return
-    }
+}
 
-    console.log(data)
-    getPokemon('https://pokeapi.co/api/v2/pokemon/squirtle', (error, data) => {
-      if (error) {
-        console.log(error)
-        return        
-      }
+const getPokemonUrl = name => `https://pokeapi.co/api/v2/pokemon/${name}`
 
-      console.log(data)
-    })
+const bulbasaur = getPokemonUrl('bulbasaur')
+const charmander = getPokemonUrl('charmander')
+const squirtle = getPokemonUrl('squirtle')
+
+getPokemon(bulbasaur, (error, data) => {
+  logPokemonMessage(error, data)
+  getPokemon(charmander, (error, data) => {
+    logPokemonMessage(error, data)
+    getPokemon(squirtle, logPokemonMessage)
   })
 })
-
-
-
 
 /*
   02
@@ -86,8 +80,14 @@ getPokemon('https://pokeapi.co/api/v2/pokemon/bulbasaur', (error, data) => {
 */
 
 const map = (array, myFunc) => {
-  let newArray = []  
-  array.forEach(item => newArray.push(myFunc(item))) 
+  let newArray = [] 
+
+  const addNewItemToNewArray = item => {
+    const newItem = myFunc(item)
+    newArray.push(newItem)
+  }  
+
+  array.forEach(addNewItemToNewArray) 
   return newArray
 }
 
@@ -121,12 +121,12 @@ console.log(person.getName())
 
 const x = 'x'
 
-const myFunc = () => {
+const getX = () => {
   const x = 'y'
   return x
 }
 
-console.log(x, myFunc())
+console.log(x, getX())
 
 
 /*
@@ -137,7 +137,6 @@ console.log(x, myFunc())
 */
 
 const getFullName = ({ firstName, lastName }) => `${firstName} ${lastName}`
-
 console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
 
 /*
@@ -175,12 +174,12 @@ const colors = [
   'Verde militar',
   'Cinza fosco',
   'Lilás',
-  'Rosa',
   'Amarelo claro',
   'Turquesa escura'
 ]
 
-// colors.forEach(color => console.log(convertToHex(color)))
+const logColorMessage = color => console.log(convertToHex(color))
+colors.forEach(logColorMessage)
 
 /*
   07
@@ -206,23 +205,81 @@ const people = [
   { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' }
 ]
 
-const eighteen = people.filter(person => person.age === 18)
-const nineteen = people.filter(person => person.age === 19)
-const twenty = people.filter(person => person.age === 20)
+/*
+  Se a propriedade ainda não existir eu tenho que fazer ela armazenar um valor 
+  inicial. Porém, caso ela exista, eu devo acessar o valor que ela tem e somar a 1.
 
-const frequencyOfAges = people.reduce((acc, person) => {
-  if (person.age === 18) {
-    acc[person.age] = eighteen.length
+  Curto-circuito é uma expressão que vai retornar OU um valor OU outro valor.
+*/
+
+const createOrIncrementAgesFrequency = (acc, person) => {
+  acc[person.age] = acc[person.age] + 1 || 1
+  return acc  
+}
+
+const agesFrequency = people.reduce(createOrIncrementAgesFrequency, {})
+
+/*
+  1° Iteração
+  acc = {
+    18: 1,    
   }
 
-  if (person.age === 19) {
-    acc[person.age] = nineteen.length
+  2° Iteração
+  acc = {
+    18: 1,  
+    19: 1,  
   }
 
-  if (person.age === 20) {
-    acc[person.age] = twenty.length
+  3° Iteração
+  acc = {
+    18: 2,  
+    19: 1,  
   }
 
-  return acc
-}, {})
-console.log(frequencyOfAges)
+  4° Iteração
+  acc = {
+    18: 3,  
+    19: 1,  
+  }
+
+  5° Iteração
+  acc = {
+    18: 3,  
+    19: 1,  
+    20: 1
+  }
+
+  6° Iteração
+  acc = {
+    18: 3,  
+    19: 2,  
+    20: 1
+  }
+*/
+
+/* Solução que eu encontrei
+
+  let eighteenYearsOld = 0
+  let nineteenYearsOld = 0
+  let twentyYearsOld = 0
+
+  const getFrequencyOfAges = (acc, { age }) => {
+    switch (age) {
+      case 18:      
+        acc[age] = ++eighteenYearsOld
+        break
+      case 19:
+        acc[age] = ++nineteenYearsOld
+        break
+      case 20:
+        acc[age] = ++twentyYearsOld    
+    }
+
+    return acc
+  }
+
+  const frequencyOfAges = people.reduce(getFrequencyOfAges, {})
+  console.log(frequencyOfAges)
+
+*/
