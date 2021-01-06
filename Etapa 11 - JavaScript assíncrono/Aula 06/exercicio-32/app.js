@@ -63,7 +63,7 @@ const insertGIFIntoDOM = async inputValue => {
   }
 }
 
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', event => {
   event.preventDefault()
 
   const inputValue = event.target.search.value
