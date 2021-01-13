@@ -17,12 +17,9 @@ console.log(book)
   - Implemente a função da forma mais concisa que você conseguir.
 */
 
-const myFunc = (array) => {
-  const [firstItem, secondItem, thirdItem] = array
-  return [thirdItem, firstItem, secondItem]
-}
-
-console.log(myFunc([1, 2, 3]))
+// ***
+const swap = ([first, , third]) => [third, first]
+console.log(swap([1, 2, 3]))
 
 /*
   03
@@ -67,8 +64,8 @@ console.log({ red, green, blue })
     - Faça a função retornar "Olá, meu nome é [NOME]!".
 */
 
-const greet = (obj, property) => {
-  const { [property]: name = 'desconhecido' } = obj
+const greet = (obj, dynamicName) => {
+  const { [dynamicName]: name = 'desconhecido' } = obj
   return `Olá, meu nome é ${name}!`
 }
 
