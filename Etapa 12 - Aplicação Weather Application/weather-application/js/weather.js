@@ -1,5 +1,5 @@
-const APIKey = 'Kmw4PzvlJ1fAVXibrTxE3uN8IlXtgYxL'
-const baseUrl = 'http://dataservice.accuweather.com/'
+const APIKey = 'gmuAnDScJz7e8t7lvU79tnhzNARru90Q'
+const baseUrl = 'https://dataservice.accuweather.com/'
 
 const getCityUrl = cityName =>
   `${baseUrl}locations/v1/cities/search?apikey=${APIKey}&q=${cityName}`
