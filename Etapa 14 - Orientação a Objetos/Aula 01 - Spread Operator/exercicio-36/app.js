@@ -25,13 +25,10 @@ console.log(sum(...numbers))
     apenas a primeira letra maiúscula.
 */
 
-const myName = 'gabriel'
-const nameWithFirstCapitalLetter = [
-  ...myName
-  .replace(myName[0], myName[0].toUpperCase())  
-].join('')
+const name = 'gabriel'
+const firstLetterCapitalize = [name[0].toUpperCase(), ...name.slice(1)].join('')
 
-console.log(nameWithFirstCapitalLetter)
+console.log(firstLetterCapitalize)
 
 /*
   03
@@ -46,10 +43,9 @@ const randomNumber = Math.round(Math.random() * 100)
 
 const obj = {
   a: 1,
-  b: 2
+  b: 2,
+  ...(randomNumber > 50 ? { c: 3 } : { d: 4 })
 }
-
-randomNumber > 50 ? obj.c = 3 : obj.d = 4
 
 console.log(obj)
 
@@ -60,32 +56,15 @@ console.log(obj)
     criado permaneça intacto.
 */
 
-const h = w => w.d = 3 
+const third = obj => ({ ...obj, d: 3 }) 
 
-const q = f => h(f)
+const second = obj => third(obj)
+const first = obj => second(obj)
 
-const i = b => q(b)
+const object = { k: 't' }
+const object2 = first(object)
 
-const v = { k: 't' }
-
-const functions = [i, q, h]
-const newObj = functions.reduce((acc, func) => {
-  func(acc)
-  return acc
-}, { ...v })
-
-console.log(newObj, v)
-
-/*
-  1° Iteração
-  acc = { k: 't' }
-
-  2° Iteração
-  acc = { k: 't', d: 3 }
-
-  3° Iteração
-  acc = { k: 't', d: 3 }
-*/
+console.log(object, object2)
 
 /*
   05
@@ -118,12 +97,10 @@ const timestamps = [
   }
 ]
 
-const createDates = (acc, { date, value }) => {
-  acc[date] = value
-  return acc 
-}
-
-const dates = timestamps.reduce(createDates, {}) 
+const dates = timestamps.reduce((acc, timestamp) => {
+  acc[timestamp.date] = timestamp.value
+  return acc
+}, {})
 
 console.log(dates)
 
@@ -147,24 +124,25 @@ console.log(dates)
   Dica 2: o método forEach nunca retorna um valor.
 */
 
-// callback(item, index, array)
-
-const forEach = (arr, callback) => {
-  for (let i = 0; i < arr.length; i++) {
-    callback(arr[i], i, arr)
-  }
-}
-
 let accumulator = 0
 const oddNumbers = [51, 97, 65, 23]
 
-forEach(oddNumbers, (item, index, iterable) => {
-  const position = index + 1
-  const arr = iterable.join(', ')
+const forEach = (array, callback) => {
+  for (let index = 0; index < array.length; index++) {
+    callback(array[index], index, array)
+  }
+}
 
-  accumulator += item
-  console.log(`"${item}" é o ${position}º item do array [${arr}]`)
-})
+const logMessage = (item, index, array) => {
+  const message = 
+    `"${item}" é o ${index + 1}º item do array [${array.join(', ')}]`
+  console.log(message)
+}
+
+const addNumbers = item => accumulator += item
+
+forEach(oddNumbers, logMessage)
+forEach(oddNumbers, addNumbers)
 
 console.log(accumulator)
 
@@ -197,24 +175,33 @@ console.log(accumulator)
       1º slide, o slide anterior deve ser exibido.
 */
 
-const buttonNext = document.querySelector('[data-js="carousel__button--next"]')
 const slides = document.querySelectorAll('[data-js="carousel__item"]')
+const buttonNext = document.querySelector('[data-js="carousel__button--next"]')
+const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
 
+const lastSlideIndex = slides.length - 1
 let currentSlideIndex = 0
 
-buttonNext.addEventListener('click', () => {
-  if (currentSlideIndex === 2) {
-    slides[0].classList.remove('carousel__item--hidden')
-    slides[0].classList.add('carousel__item--visible')
-  } else if (currentSlideIndex !== 2) {
-    slides[currentSlideIndex].classList.remove('carousel__item--hidden')
-    slides[currentSlideIndex].classList.add('carousel__item--visible')
-  }
-
+const manipulateSlideClasses = index => {
   slides.forEach(slide => {
     slide.classList.remove('carousel__item--visible')
-    slide.classList.add('carousel__item--hidden')
   })
 
-  currentSlideIndex++
+  slides[index].classList.add('carousel__item--visible')
+}
+
+buttonNext.addEventListener('click', () => {
+  const correctSlideIndex = currentSlideIndex === lastSlideIndex 
+    ? currentSlideIndex = 0 
+    : ++currentSlideIndex
+
+  manipulateSlideClasses(correctSlideIndex)
 })
+
+prevButton.addEventListener('click', () => {
+  const correctSlideIndex = currentSlideIndex === 0 
+    ? currentSlideIndex = lastSlideIndex 
+    : --currentSlideIndex
+
+  manipulateSlideClasses(correctSlideIndex)
+}) 
