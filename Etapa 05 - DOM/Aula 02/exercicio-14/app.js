@@ -16,9 +16,9 @@ h1.textContent = h1.textContent.toUpperCase()
   - Cada número deve estar dentro de uma <li> com a classe "number".
 */
 
-const numbers = [ 53, 24, 3, 8, 1, 6, 57, 80, 77, 98, 55 ]
-
 const ul = document.querySelector('.numbers')
+
+const numbers = [ 53, 24, 3, 8, 1, 6, 57, 80, 77, 98, 55 ]
 
 const insertNumberIntoUl = number => {
   ul.innerHTML += `<li class="number">${number}</li>`
@@ -39,13 +39,13 @@ const lis = document.querySelectorAll('.number')
 const changeLiColor = li => {
   const number = Number(li.textContent)
   const isEven = number % 2 === 0
-
+  
   if (isEven) {
-    li.style.color = 'lightblue'    
+    li.style.color = 'lightblue'
     return
   }
 
-  li.style.color = 'pink'  
+  li.style.color = 'pink'
 }
 
 lis.forEach(changeLiColor)
@@ -70,7 +70,7 @@ body.classList.add('body-background')
     do link do index.html.
 */
 
-const repoLink = document.querySelector('.link')
+const repoLink = document.querySelector('a')
 
 repoLink.setAttribute('href', 'https://github.com/roger-melo-treinamentos/curso-de-js-roger-melo')
 

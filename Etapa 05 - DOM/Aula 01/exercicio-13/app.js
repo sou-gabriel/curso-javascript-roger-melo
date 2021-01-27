@@ -11,7 +11,7 @@
 const getCatInfo = () => {
   const name = 'Marcos'
   let age = 3
-  const color = 'Cinza'  
+  const color = 'Cinza'
 
   return { name, age, color }
 }
@@ -52,7 +52,10 @@ external()
 */
 
 let randomNumbers = [3, 2, 1]
-console.log(randomNumbers.reverse())
+
+randomNumbers.reverse()
+
+console.log(randomNumbers)
 
 /*
   04
@@ -65,10 +68,11 @@ console.log(randomNumbers.reverse())
 let crazyArray = [
   { prop1: '1', prop2: '2' },
   function getMessage () { return 'hi' },
-  [ 5, 96, 53 ]
+  [ 5, 96, 53  ]
 ]
 
 crazyArray.shift()
+
 console.log(crazyArray)
 
 /*
@@ -88,7 +92,7 @@ const dogs = [
   { name: 'Xica', age: 6, gender: 'Female', breed: 'Chihuahua' }
 ]
 
-const zequinha = dogs.find(({ name }) => name === 'Zequinha')
+const zequinha = dogs.find(dog => dog.name === 'Zequinha')
 console.log(zequinha)
 
 /*
@@ -134,5 +138,5 @@ console.log(title)
   - Exiba esse NodeList no console.
 */
 
-const secondaryTitle = document.querySelectorAll('.secondary-title')
-console.log(secondaryTitle)
+const subtitles = document.querySelectorAll('.secondary-title')
+console.log(subtitles)
