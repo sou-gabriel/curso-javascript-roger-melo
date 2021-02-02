@@ -25,6 +25,7 @@ ul.addEventListener('click', event => {
   const clickedElement = event.target
   
   if (clickedElement.tagName === 'LI') {
+    console.log(clickedElement)
     clickedElement.remove()
   }
 })

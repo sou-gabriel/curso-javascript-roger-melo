@@ -6,7 +6,7 @@
   - Exiba no console os elementos filhos da ul com a classe já inserida.
 */
 
-const ul = document.querySelector('ul')
+const ul = document.querySelector('.videos')
 const lis = Array.from(ul.children)
 
 const insertVideoClass = li => {
@@ -14,6 +14,7 @@ const insertVideoClass = li => {
 }
 
 lis.forEach(insertVideoClass)
+
 console.log(lis)
 
 /*
@@ -82,13 +83,15 @@ const videos = [{
 
 const button = document.querySelector('button')
 
-const addLiIntoUl = () => {
-  videos.forEach(({ name }) => {
-    ul.innerHTML += `<li>${name}</li>`
-  })
+const insertVideoIntoUl = ({ name }) => {
+  ul.innerHTML += `<li>${name}</li>`
 }
 
-button.addEventListener('click', addLiIntoUl)
+const handleButtonClick = () => {
+  videos.forEach(insertVideoIntoUl)
+}
+
+button.addEventListener('click', handleButtonClick)
 
 /*
   07
@@ -97,6 +100,8 @@ button.addEventListener('click', addLiIntoUl)
     sejam removidos.
 */
 
+const body = document.body
+
 h1.addEventListener('click', () => {
-  document.body.innerHTML = ''
+  body.innerHTML = ''
 })
