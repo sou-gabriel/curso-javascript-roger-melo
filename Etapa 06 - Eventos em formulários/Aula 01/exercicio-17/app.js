@@ -16,23 +16,22 @@ const logMessage = message => {
   clearInput()
 }
 
-const handleSubmit = event => {
+const handleFormSubmission = event => {
   event.preventDefault()
 
   const input = event.target.input
   const regex = /[a-zA-Z0-9]{7,11}/
-  const isAValueValid = regex.test(input.value)
-  
-  if (isAValueValid) {
+  const isAValidValue = regex.test(input.value)
+
+  if (isAValidValue) {
     logMessage('O valor inserido no input é válido =)')
     return
   }
-  
+
   logMessage('Valor inválido =(')
-  
 }
 
-form.addEventListener('submit', handleSubmit)
+form.addEventListener('submit', handleFormSubmission)
 
 /*
   02
@@ -51,8 +50,8 @@ form.addEventListener('submit', handleSubmit)
 
 const paragraph = document.querySelector('p')
 
-const regex = /documentation/
-const result = regex.test(paragraph.textContent)
+const pattern = /documentation/
+const result = pattern.test(paragraph.textContent)
 
 console.log(result)
 
@@ -64,12 +63,12 @@ console.log(result)
   - Teste se o match aconteceu e exiba o resultado no console.
 */
 
-const B99message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta'
+const B99Message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta'
 
 const B99Regex = /[A-Z0-9]{3}/
-const B99Test = B99Regex.test(B99message)
+const B99Result = B99Regex.test(B99Message)
 
-console.log(B99Test)
+console.log(B99Result)
 
 /*
   05

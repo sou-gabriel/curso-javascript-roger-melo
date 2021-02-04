@@ -6,27 +6,29 @@
 */
 
 const div = document.querySelector('div')
+const elementsInsideDiv = Array.from(div.children)
 const h2 = document.querySelector('h2')
 const egg = document.querySelector('.egg')
 const button = document.querySelector('button')
 
-// const elementsInsideDiv = Array.from(div.children)
-
 // elementsInsideDiv.forEach(element => {
 //   element.addEventListener('click', event => {
-    
 //     event.stopPropagation()
+
+//     const clickedElementName = event.target.tagName
+
+//     h2.textContent = `Clicou no ${clickedElementName.toLowerCase()}, filho da div.`
 //   })
 // })
 
-const showClickMessage = event => {
-  const clickedElementName = event.target.tagName.toLowerCase()
+const showClickMessage = ({ target }) => {
+  const clickedElementName = target.tagName.toLowerCase() 
 
   if (clickedElementName === 'div') {
-    h2.textContent = 'Clicou na div.'
+   h2.textContent = 'Clicou na div.'
     return
-  }  
-  
+  }
+
   h2.textContent = `Clicou no ${clickedElementName}, filho da div.`
 }
 
@@ -106,9 +108,9 @@ const people = [
   { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
 ]
 
-const isSomePersonFrontEndDeveloper = people.some(({ profession }) => 
+const isThereAnyFrontEndDeveloper = people.some(({ profession }) => 
   profession === 'Front-end developer')
 
-if (isSomePersonFrontEndDeveloper) {
+if (isThereAnyFrontEndDeveloper) {
   console.log('O array people contém, no mínimo, um(a) Front-end developer.')
 }
