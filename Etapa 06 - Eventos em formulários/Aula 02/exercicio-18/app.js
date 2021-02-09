@@ -21,13 +21,14 @@
   Dica: pesquise pelo método "insertAdjacentElement", no MDN;
 */
 
-const inputUsername = document.querySelector('#username')
 const form = document.querySelector('form')
+const inputUsername = document.querySelector('#username')
 const button = document.querySelector('button')
+
 const paragraphUsernameFeedback = document.createElement('p')
 const paragraphSubmitFeedback = document.createElement('p')
 
-paragraphSubmitFeedback.setAttribute('data-feedback', 'submit-feedback')
+paragraphSubmitFeedback.setAttribute('data-js', 'submit-feedback')
 
 const insertParagraphIntoDOM = paragraphInfo => {
   const { paragraph, text, className, previousSibling } = paragraphInfo
@@ -37,23 +38,52 @@ const insertParagraphIntoDOM = paragraphInfo => {
   previousSibling.insertAdjacentElement('afterend', paragraph)
 }
 
+const invalidUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas',
+  className: 'username-help-feedback',
+  previousSibling: inputUsername
+} 
+
 const testUsername = inputValue => /^[a-zA-Z]{6,}$/.test(inputValue)
 
-const removeSubmitFeedback = () => {
+const removeSubmitParagraph = () => {
   const paragraphSubmitFeedbackExists = document
-    .querySelector('[data-feedback="submit-feedback"]')    
+    .querySelector('[data-js="submit-feedback"]')
 
   if (paragraphSubmitFeedbackExists) {
-    paragraphSubmitFeedback.remove()
+    paragraphSubmitFeedbackExists.remove()
   }
 }
 
-const showUsernameInfo = event => {
-  const isNotAValidUsername = !testUsername(event.target.value)
-  
-  removeSubmitFeedback()
+const validUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'Username válido =)',
+  className: 'username-success-feedback',
+  previousSibling: inputUsername
+}
 
-  if (isNotAValidUsername) {
+const validSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text: 'Dados enviados =)',
+  className: 'submit-success-feedback',
+  previousSibling: button
+}
+
+const invalidSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text: 'Por favor, insira um username válido',
+  className: 'submit-help-feedback',
+  previousSibling: button
+}
+
+const showUsernameInfo = event => {
+  const inputValue = event.target.value  
+  const isAValidUsername = testUsername(inputValue)
+
+  removeSubmitParagraph()
+
+  if (!isAValidUsername) {
     insertParagraphIntoDOM(invalidUsernameInfo)
     return
   }
@@ -65,42 +95,14 @@ const showSubmitInfo = event => {
   event.preventDefault()
 
   const inputValue = event.target.username.value
-  const isNotAValidUsername = !testUsername(inputValue)
+  const isAValidUsername = testUsername(inputValue)
 
-  if (isNotAValidUsername) {
-    insertParagraphIntoDOM(invalidSubmitInfo)
+  if (isAValidUsername) {
+    insertParagraphIntoDOM(validSubmitInfo)
     return
   }
 
-  insertParagraphIntoDOM(validSubmitInfo)
-}
-
-const invalidUsernameInfo = {
-  paragraph: paragraphUsernameFeedback,
-  text: 'O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas',
-  className: 'username-help-feedback',
-  previousSibling: inputUsername
-}
-
-const validUsernameInfo = {
-  paragraph: paragraphUsernameFeedback,
-  text: 'Username válido =)',
-  className: 'username-success-feedback',
-  previousSibling: inputUsername
-}
-
-const invalidSubmitInfo = {
-  paragraph: paragraphSubmitFeedback,
-  text: 'Por favor, insira um username válido',
-  className: 'submit-help-feedback',
-  previousSibling: button
-}
-
-const validSubmitInfo = {
-  paragraph: paragraphSubmitFeedback,
-  text: 'Dados enviados =)',
-  className: 'submit-success-feedback',
-  previousSibling: button
+  insertParagraphIntoDOM(invalidSubmitInfo)
 }
 
 inputUsername.addEventListener('input', showUsernameInfo)
@@ -139,7 +141,7 @@ form.addEventListener('submit', showSubmitInfo)
   do curso, onde falaremos sobre TDD. Vá se aquecendo =D
 */
 
-const some = (array = [], callback) => {
+const some = (array, callback) => {
   for (let i = 0; i < array.length; i++) {
     if (callback(array[i])) {
       return true
@@ -149,5 +151,5 @@ const some = (array = [], callback) => {
   return false
 }
 
-console.log(some([1, 2, 3], item => item > 2))
-console.log(some([1, 3, 5], item => item === 0))
+// console.log(some([1, 2, 3], item => item > 2))
+// console.log(some([1, 3, 5], item => item === 0))
