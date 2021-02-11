@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Quiz Interativo - Frameworks</title>
+</head>
+<body>
+  <header>
+    <h1>Quiz Interativo - Frameworks</h1>
+  </header>
+
+  <main>
+    <div class="image-container">
+      <img src="./assets/src/image.svg" alt="Undraw">
+    </div>
+
+    <section class="final-score-container hidden">
+      <article>
+        <p>Você acertou <strong data-js="final-score">0%</strong> do quiz!</p>
+      </article>
+    </section>
+
+    <div class="container">
+      <h2 class="margin-y-48">Você consegue assimilar os frameworks as suas respectivas linguagens?</h2>
+
+      <form>
+        <fieldset class="margin-y-48">
+          <legend>1. React Native é um framework de:</legend>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion1" value="A" checked>
+              Dart
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion1" value="B">
+              JavaScript
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="margin-y-48">
+          <legend>2. Django é um framework voltado para desenvolvimento web de:</legend>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion2" value="A" checked>
+              Golang
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion2" value="B">
+              Python
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="margin-y-48">
+          <legend>3. ASP.NET MVC é um framework bem popular de:</legend>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion3" value="A" checked>
+              C#
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion3" value="B">
+              C
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="margin-y-48">
+          <legend>4. Laravel é um framework livre e open-source de:</legend>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion4" value="A" checked>
+              PHP
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="inputQuestion4" value="B">
+              JavaScript
+            </label>
+          </div>
+        </fieldset>
+    
+        <button type="submit">Enviar respostas</button>        
+      </form>
+    </div>
+  </main>
+  
+  <script src="./app.js"></script>
+</body>
+</html>
