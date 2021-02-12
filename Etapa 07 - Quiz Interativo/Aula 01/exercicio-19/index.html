@@ -1,101 +1,148 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Quiz Interativo - Frameworks</title>
 </head>
 <body>
-  <header>
-    <h1>Quiz Interativo - Frameworks</h1>
-  </header>
-
-  <main>
-    <div class="image-container">
-      <img src="./assets/src/image.svg" alt="Undraw">
-    </div>
-
-    <section class="final-score-container hidden">
-      <article>
-        <p>Você acertou <strong data-js="final-score">0%</strong> do quiz!</p>
-      </article>
-    </section>
-
+  <div class="intro py-3 bg-primary text-center">
     <div class="container">
-      <h2 class="margin-y-48">Você consegue assimilar os frameworks as suas respectivas linguagens?</h2>
+      <h2 class="text-light display-3 my-4">Quiz Interativo - Frameworks</h2>
+    </div>
+  </div>
 
-      <form>
-        <fieldset class="margin-y-48">
-          <legend>1. React Native é um framework de:</legend>
-          <div>
-            <label>
+  <div class="result py-4 d-none bg-light text-center final-score-container">
+    <div class="container lead">
+      <p>Você acertou <span class="text-primary display-4 p-3">0%</span> do quiz!</p>
+    </div>
+  </div>
+
+  <div class="quiz py-4 bg-dark">
+    <div class="container">
+      <h2 class="my-5 text-white">Você consegue assimilar os frameworks as suas respectivas linguagens?</h2>
+
+      <form class="quiz-form text-light">
+        <div class="my-5">
+          <p class="lead font-weight-normal">1. React Native é um framework de:</p>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
               <input type="radio" name="inputQuestion1" value="A" checked>
-              Dart
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="inputQuestion1" value="B">
               JavaScript
             </label>
           </div>
-        </fieldset>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion1" value="B">
+              Dart
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion1" value="C">
+              Ruby
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion1" value="D">
+              Java
+            </label>
+          </div>
+        </div>
 
-        <fieldset class="margin-y-48">
-          <legend>2. Django é um framework voltado para desenvolvimento web de:</legend>
-          <div>
-            <label>
+        <div class="my-5">
+          <p class="lead font-weight-normal">2. Django é um framework voltado para desenvolvimento web de:</p>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
               <input type="radio" name="inputQuestion2" value="A" checked>
               Golang
             </label>
           </div>
-          <div>
-            <label>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
               <input type="radio" name="inputQuestion2" value="B">
-              Python
+              JavaScript
             </label>
           </div>
-        </fieldset>
-
-        <fieldset class="margin-y-48">
-          <legend>3. ASP.NET MVC é um framework bem popular de:</legend>
-          <div>
-            <label>
-              <input type="radio" name="inputQuestion3" value="A" checked>
-              C#
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="inputQuestion3" value="B">
-              C
-            </label>
-          </div>
-        </fieldset>
-
-        <fieldset class="margin-y-48">
-          <legend>4. Laravel é um framework livre e open-source de:</legend>
-          <div>
-            <label>
-              <input type="radio" name="inputQuestion4" value="A" checked>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion2" value="C">
               PHP
             </label>
           </div>
-          <div>
-            <label>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion2" value="D">
+              Python
+            </label>
+          </div>
+        </div>
+
+        <div class="my-5">
+          <p class="lead font-weight-normal">3. ASP.NET MVC é um framework bem popular de:</p>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion3" value="A" checked>
+              C
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion3" value="B">
+              C#
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion3" value="C">
+              Ruby
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion3" value="D">
+              Java
+            </label>
+          </div>
+        </div>
+
+        <div class="my-5">
+          <p class="lead font-weight-normal">4. Laravel é um framework livre e open-source de:</p>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion4" value="A" checked>
+              Java
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
               <input type="radio" name="inputQuestion4" value="B">
               JavaScript
             </label>
           </div>
-        </fieldset>
-    
-        <button type="submit">Enviar respostas</button>        
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion4" value="C">
+              PHP
+            </label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <label class="form-check-label">
+              <input type="radio" name="inputQuestion4" value="D">
+              C#
+            </label>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <button class="btn bg-primary text-light">Enviar</button>
+        </div>
       </form>
     </div>
-  </main>
-  
+  </div>
+
   <script src="./app.js"></script>
 </body>
 </html>
