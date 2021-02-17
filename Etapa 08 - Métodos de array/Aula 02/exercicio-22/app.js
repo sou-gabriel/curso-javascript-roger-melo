@@ -9,6 +9,7 @@
 const getArrayCopy = array => array.map(item => item)
 
 const names = ['Caio', 'André', 'Dário']
+
 const namesInAlphabeticalOrder = getArrayCopy(names).sort()
 
 console.log(namesInAlphabeticalOrder)
@@ -28,11 +29,11 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
-const charactersOrderById = characters
+const charactersOrderedById = characters
   .map(({ id, name }) => ({ id, name }))
   .sort((item2, item1) => item2.id - item1.id)
 
-console.log(charactersOrderById)
+console.log(charactersOrderedById)
 
 /*
   03
@@ -43,10 +44,12 @@ console.log(charactersOrderById)
 */
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
-const numbersInAscendingOrder = getArrayCopy(numbers)
+
+const numberInAscedingOrder = getArrayCopy(numbers)
   .sort((item2, item1) => item2 - item1)
 
-console.log(numbersInAscendingOrder)
+console.log(numberInAscedingOrder)
+
 
 /*
   04
@@ -68,9 +71,10 @@ console.log(numberGreatherThan50)
 */
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
-const peopleInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
 
-console.log(peopleInReverseAlphabeticalOrder)
+const namesInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
+
+console.log(namesInReverseAlphabeticalOrder)
 
 /*
   06
@@ -82,14 +86,12 @@ console.log(peopleInReverseAlphabeticalOrder)
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
-const cookedIngredients = ingredients.reduce((acc, ingredient, index, array) => {
-  const correctWordGender = ingredient[ingredient.length - 1] === 'a' 
-    ? 'cozida' 
-    : 'cozido'
+const cookedIngredients = ingredients.reduce((acc, item, index, array) => {
+  const correctGenderWord = /a$/.test(item) ? 'cozida' : 'cozido'
   const isLastItem = index === array.length - 1
-  const ingredientMessage = acc + `${ingredient} ${correctWordGender}`
+  const ingredientMessage = acc + `${item} ${correctGenderWord}`
 
-  return isLastItem ? ingredientMessage : `${ingredientMessage}, `   
+  return isLastItem ? ingredientMessage : `${ingredientMessage}, `
 }, '')
 
 console.log(cookedIngredients)
@@ -105,7 +107,7 @@ const topBrazilMovies = [
   { title: 'Vingadores: Ultimato', peopleAmount: 19686119, distributedBy: 'Disney' },
   { title: 'Titanic', peopleAmount: 17050000, distributedBy: 'Paramount / 20th Century' },
   { title: 'O Rei Leão', peopleAmount: 16267649, distributedBy: 'Disney' },
-  { title: 'Vingadores: Guerra Infinita', peopleAmount: 16267649, distributedBy: 'Disney' },
+  { title: 'Vingadores: Guerra Infinita', peopleAmount: 14572181, distributedBy: 'Disney' },
   { title: 'Tubarão', peopleAmount: 13035000, distributedBy: 'Universal' },
   { title: 'Nada a Perder', peopleAmount: 11944985, distributedBy: 'Paris Filmes' },
   { title: 'Os Dez Mandamentos', peopleAmount: 11259536, distributedBy: 'Paris / Downtown Filmes' },
@@ -140,11 +142,11 @@ const pets = [
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
 
-const dogInHumanAge = pets
+const dogsInHumanAge = pets
   .filter(({ type }) => type === 'Dog')
-  .map(({ name, age, gender, type }) => ({ name, age: age * 7, gender, type }))
+  .map(({ age }) => age * 7)
 
-console.log(dogInHumanAge)
+console.log(dogsInHumanAge)
 
 /*
   09
@@ -155,7 +157,10 @@ console.log(dogInHumanAge)
 
 const ul = document.querySelector('.list-group')
 
-// const lis = topBrazilMovies.map(movie => `<li>${movie.title}</li>`).join('')
+// const movieNames = topBrazilMovies
+//   .map(movie => `<li>${movie.title}</li>`)
+//   .join('')
+
 const movieNames = topBrazilMovies
   .reduce((acc, { title }) => acc + `<li>${title}</li>`, '')
 

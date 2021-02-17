@@ -6,13 +6,10 @@ const correctAnswers = ['A', 'D', 'B', 'C']
 let score = 0
 
 const getUserAnswers = () => {
-  const userAnswers = [
-    form.inputQuestion1.value,
-    form.inputQuestion2.value,
-    form.inputQuestion3.value,
-    form.inputQuestion4.value
-  ]
-
+  const userAnswers = correctAnswers.map((_, index) => {
+    return form[`inputQuestion${index + 1}`].value
+  })
+  
   return userAnswers
 }
 
