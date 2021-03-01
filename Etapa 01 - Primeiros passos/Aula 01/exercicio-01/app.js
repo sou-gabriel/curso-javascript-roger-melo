@@ -42,7 +42,7 @@ const myBirthYear = 2001
 06 - Declare uma const "currentYear", que recebe o ano atual, com 4 dígitos.
 */
 
-const currentYear = 2020
+const currentYear = 2021
 
 /*
 07 - Exiba as const "myBirthYear" e "currentYear", lado a lado, no console do browser.
@@ -62,7 +62,8 @@ acontece.
 - Exiba a "myAge" no console.
 */
 
-const myAge = currentYear - myBirthYear 
+const myAge = currentYear - myBirthYear
+
 console.log(myAge)
 
 /*
@@ -81,7 +82,7 @@ matemáticas e strings (textos) em breve =)
 
 const ten = 10
 
-console.log(`Em ${currentYear + ten}, estarei com ${myAge + 10} anos.`)
+console.log(`Em ${currentYear + ten}, estarei com ${myAge + ten} anos.`)
 
 /*
 10 - Abra o site abaixo no browser e faça o seguinte:

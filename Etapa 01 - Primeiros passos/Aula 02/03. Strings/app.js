@@ -1,26 +1,30 @@
-// Strings
-console.log('Hello World')
+// strings
+console.log('hello, world')
 
-const email = 'devgabrielramos@gmail.com'
+const email = 'leon@rogermelo.com.br'
 
-// Concatenação de strings
+console.log(email)
+
+// concatenar strings
 const firstName = 'Nathan'
 const lastName = 'Drake'
 const fullName = firstName + ' ' + lastName
 
 console.log(fullName)
 
-// Acessando caracteres 
-console.log(firstName[0])
+// acessando caracteres 
+console.log(fullName[2])
 
-// Comprimento de uma string
+// comprimento de uma string
 console.log(fullName.length)
 
-// Métodos de string
+// métodos de string
 console.log(fullName.toUpperCase())
 
 const result = fullName.toLowerCase()
-console.log(result)
+
+console.log(result, fullName)
 
 const index = email.indexOf('@')
+
 console.log(index)
