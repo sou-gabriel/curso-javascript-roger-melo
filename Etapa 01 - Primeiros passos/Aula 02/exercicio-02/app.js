@@ -32,7 +32,8 @@ Utilize os espaços entre os comentários abaixo para executar os códigos dos e
 
 const tom = 'Tom'
 const firstTom = 'Hanks'
-const secondTom = 'Cruise'
+const secondTom = 'Cruiuse'
+
 const myFavoriteTom = tom + ' ' + secondTom
 
 // console.log(myFavoriteTom)
@@ -168,6 +169,7 @@ const reminder = 10 % 3
 */
 
 let episodes = 6
+
 episodes++
 
 // console.log(episodes)
@@ -181,6 +183,7 @@ episodes++
 */
 
 episodes--
+
 // console.log(episodes)
 
 /*
@@ -191,6 +194,7 @@ episodes--
 */
 
 episodes += 4
+
 // console.log(episodes)
 
 /*
@@ -201,7 +205,8 @@ episodes += 4
 - Exiba a "allEpisodes" no console.
 */
 
-const allEpisodes = `O nº de episódios é: ${episodes}`
+const allEpisodes = `O nº de episódios é: g`
+
 // console.log(allEpisodes)
 
 /*
@@ -228,7 +233,8 @@ const bookMessage = '\'O Conto da Aia\' é um dos livros mais vendidos da décad
 */
 
 const name = 'walter white'
-let newName = name[0].toUpperCase() + name.slice(1, 7) + name[7].toUpperCase() + name.slice(8)
+let newName = name.slice(0, 1).toUpperCase() + name.slice(1, 6) + ' ' + name.slice(7, 8).toUpperCase() + name.slice(8)
+
 // console.log(newName)
 
 /*
@@ -241,5 +247,6 @@ let newName = name[0].toUpperCase() + name.slice(1, 7) + name[7].toUpperCase() +
 - Exiba a "newName" no console;
 */
 
-newName = `${name[0].toUpperCase()}${name.slice(1, 7)}${name[7].toUpperCase()}${name.slice(8)}`
+newName = `${name.slice(0, 1).toUpperCase()}${name.slice(1, 6)} ${name.slice(7, 8).toUpperCase()}${name.slice(8)}`
+
 // console.log(newName)
