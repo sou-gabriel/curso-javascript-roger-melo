@@ -12,6 +12,7 @@
 
 let brazilianFoods = []
 
+
 /*
 03 - Use o método adequado para adicionar os 3 seguintes itens ao array:
 
@@ -23,6 +24,7 @@ let brazilianFoods = []
 */
 
 brazilianFoods.push('Coxinha', null, 'Brigadeiro')
+
 // console.log(brazilianFoods)
 
 /*
@@ -33,7 +35,8 @@ array "brazilianFoods" (null) seja substituído por "Pão de Queijo";
 - Exiba apenas o 2º item desse array no console.
 */
 
-brazilianFoods[1] = 'Pão de Quejo'
+brazilianFoods[1] = 'Pão de Queijo'
+
 // console.log(brazilianFoods[1])
 
 /*
@@ -49,7 +52,8 @@ mas sem digitar os nomes das comidas diretamente;
 - Exiba a foodsInfo no console.
 */
 
-const foodsInfo = `Até aqui, o array "brazilianFoods" possui ${brazilianFoods.length} itens: ${brazilianFoods[0]}, ${brazilianFoods[1]} e ${brazilianFoods[2]}.`
+const foodsInfo = `Até aqui, o  array "brazilianFoods" possui ${brazilianFoods.length} itens: ${brazilianFoods[0]}, ${brazilianFoods[1]} e ${brazilianFoods[2]}.`
+
 // console.log(foodsInfo)
 
 /*
@@ -66,7 +70,9 @@ itens "Lilica" e "Matilda";
 
 const maleDogNames = ['Chico', 'Zeca']
 const femaleDogNames = ['Lilica', 'Matilda']
+
 let dogNames = maleDogNames.concat(femaleDogNames)
+
 // console.log(dogNames)
 
 /*
@@ -112,6 +118,7 @@ apenas as letras iniciais dos nomes do array "dogNames";
 dogNames.push('Nina')
 
 const initials = `${dogNames[0][0]}${dogNames[1][0]}${dogNames[2][0]}${dogNames[3][0]}`
+
 // console.log(initials)
 
 /*
@@ -139,7 +146,7 @@ constante que você criou.
 'A SOBREMESA é um doce à base de coco, tradicional na América Latina e em Angola.'
 */
 
-const dessert = `${dogNames[0].slice(3)}${dogNames[1].slice(2)}${dogNames[3].slice(2)}`.replace('n', 'd')
+const dessert = `${dogNames[0].slice(3)}${dogNames[1].slice(2)}${dogNames[3].slice(2).replace('n', 'd')}`
 
 // console.log(`A ${dessert} é um doce à base de coco, tradicional na América Latina e em Angola.`)
 
@@ -161,5 +168,3 @@ let oddNumbers = [3, 5, 7]
 oddNumbers[1] += 4
 
 console.log(oddNumbers[1] ** 3)
-
-console.log(oddNumbers)
