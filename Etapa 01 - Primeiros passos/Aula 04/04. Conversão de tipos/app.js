@@ -1,5 +1,5 @@
 // Conversão de tipos
-// let score = '100'
+let score = '100'
 
 // score = Number(score)
 
@@ -8,19 +8,19 @@
 
 const crazyConversion = Number('Maçã')
 const convertedNumber = String(97)
-const booleanConversion = Boolean('0')
+const booleanConversion = Boolean(10)
 
-console.log(booleanConversion, typeof booleanConversion)
+console.log(Boolean('0'))
 
 /*
   Valores falsy:
     - false
     - 0
-    - "",'', ``
+    - "", '', ``
     - null
     - undefined
     - NaN
-  
-  Valores truthy:
+
+  Valores truthy
     - Qualquer valor que não é falsy
 */
