@@ -37,16 +37,17 @@ if (!animals.includes('leão')) {
 
 const randomNumbers = [59, 61, 73, 57, 35, 73, 21, 87, 43]
 let sumResult = 0
-const limit = 400
+let limit = 400
 
 for (let i = 0; i < randomNumbers.length; i++) {
-  sumResult += randomNumbers[i]
-
   if (sumResult > limit) {
-    console.log(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${sumResult}.`)
     break
   }
+
+  sumResult += randomNumbers[i]
 }
+
+console.log(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${sumResult}.`)
 
 /*
   04
@@ -89,9 +90,10 @@ console.log(newSentence)
 
 const randomValues = [57, false, 'JS', [], true, 'HTML', 31, null, false, 'CSS', 97, true, 'Git', 11, 'sticker', false, 'GitHub', true, null]
 
-let firstFourStrings = []
-let booleanAmount = 0
+let stringsAmount = 0
+let booleansAmount = 0
 let totalIterations = 0
+let firstFourStrings = []
 
 for (let i = 0; i < randomValues.length; i++) {
   const item = randomValues[i]
@@ -99,16 +101,17 @@ for (let i = 0; i < randomValues.length; i++) {
   const isItemAString = typeOfItem === 'string'
   const isItemABoolean = typeOfItem === 'boolean'
 
-  if (firstFourStrings.length === 4) {
+  if (stringsAmount === 4) {
     break
   }
 
   if (isItemAString) {
+    stringsAmount++
     firstFourStrings.push(item)
   }
 
   if (isItemABoolean) {
-    booleanAmount++
+    booleansAmount++
   }
 
   totalIterations++
@@ -119,13 +122,13 @@ const fourStrings = firstFourStrings.join(', ').replace(`, ${lastItem}`, ` e ${l
 
 console.log(`3 informações sobre o array randomValues:
   - As primeiras 4 strings são ${fourStrings};
-  - Até que as primeiras 4 strings fossem iteradas, XX booleans foram iterados;
-  - O array foi iterado por ${booleanAmount} vezes.`)
+  - Até que as primeiras 4 strings fossem iteradas, ${booleansAmount} booleans foram iterados;
+  - O array foi iterado por ${totalIterations} vezes.`)
 
 /*
   06
 
-  - Descomente a constante abaixo atribua a ela algum tipo de bebida. Exemplo:  
+  - Descomente a constante abaixo e atribua a ela algum tipo de bebida. Exemplo:  
     água, refrigerante ou suco;
   - Utilize um switch statement com cases para essas 3 possibilidades de bebida;
   - Se o tipo da bebida é água, atribua à uma variável a mensagem "Substância 
@@ -142,7 +145,7 @@ console.log(`3 informações sobre o array randomValues:
     da bebida além da que você escolheu.
 */
 
-const drinkType = 'suco'
+const drinkType = 'água'
 let drinkMessage = null
 
 switch (drinkType) {
@@ -155,8 +158,8 @@ switch (drinkType) {
   case 'suco':
     drinkMessage = 'Bebida produzida do líquido extraído de frutos.'
     break
-  default: 
-    drinkMessage = 'Bebida desconhecida.'    
+  default:
+    drinkMessage = 'Bebida desconhecida.'
 }
 
 console.log(drinkMessage)
@@ -169,18 +172,18 @@ console.log(drinkMessage)
     para testar o switch que você escreveu.
 */
 
-const number = 0
-const numberMessage = 'O valor de "number"'
+const number = 2
+const numberMessage = 'O valor de "number" é'
 
 switch (number) {
   case 0:
-    console.log(`${numberMessage} é ${number}`)
+    console.log(`${numberMessage} ${number}`)
     break
-  case 1:
-    console.log(`${numberMessage} é ${number}`)
+  case 1: 
+    console.log(`${numberMessage} ${number}`)
     break
   default: 
-    console.log(`${numberMessage} é qualquer número, exceto 0 e 1`)
+    console.log(`${numberMessage} qualquer número, exceto 0 e 1`)
 }
 
 // if (a === 0) {
