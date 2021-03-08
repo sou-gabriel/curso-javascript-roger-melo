@@ -64,11 +64,11 @@
 */
 
 const cities = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais']
+
 let upperCaseCities = []
 
 for (let i = 0; i < cities.length; i++) {
-  const upperCaseCity = cities[i].toUpperCase()
-  upperCaseCities.push(upperCaseCity)
+  upperCaseCities.push(cities[i].toUpperCase())
 }
 
 // console.log(upperCaseCities)
@@ -83,11 +83,12 @@ for (let i = 0; i < cities.length; i++) {
 */
 
 const names = ['João Grilo', 'Chicó', 'Rosinha']
+
 let HTMLTemplate = ''
 
 for (let i = 0; i < names.length; i++) {
   HTMLTemplate += `<li>${names[i]}</li>`
-} 
+}
 
 // console.log(HTMLTemplate)
 
@@ -101,6 +102,7 @@ for (let i = 0; i < names.length; i++) {
 */
 
 const numbers = ['91', '5', '30', '97', '83', '31']
+
 let sum = 0
 
 for (let i = 0; i < numbers.length; i++) {
@@ -108,7 +110,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 
 // console.log(sum === 337)
-
+ 
 /*
   07 - Comente o console.log acima.
 
@@ -134,12 +136,12 @@ const arrays = [
   [2, 8, 4]
 ]
 
-let arraysSum = 0
+let sumNumbers = 0
 
 for (let i = 0; i < arrays.length; i++) {
   for (let j = 0; j < arrays[i].length; j++) {
-    arraysSum += arrays[i][j]
+    sumNumbers += arrays[i][j]
   }
 }
 
-console.log(arraysSum)
+// console.log(sumNumbers)

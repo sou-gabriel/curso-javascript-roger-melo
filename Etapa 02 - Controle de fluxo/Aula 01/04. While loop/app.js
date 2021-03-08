@@ -1,3 +1,4 @@
+// while loop
 const names = ['Jobs', 'Hopper', 'Turing']
 let i = 0
 
