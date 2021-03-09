@@ -1,3 +1,4 @@
+// Retornando valores
 const double = function (number) {
   return number * 2
 }
