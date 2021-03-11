@@ -18,7 +18,8 @@
 // }
 
 const convertToString = value => String(value)
-console.log(typeof convertToString(77))
+
+console.log(typeof convertToString(true))
 
 /*
   02
@@ -28,8 +29,8 @@ console.log(typeof convertToString(77))
 */
 
 const getStringLength = string => string.length
-console.log(getStringLength('gabriel'))
 
+console.log(getStringLength('olá'))
 
 /*
   03
@@ -42,6 +43,7 @@ console.log(getStringLength('gabriel'))
 */
 
 const convertToLowerCase = string => string.toLowerCase()
+
 console.log(convertToLowerCase('CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM PLENO FEVEREIRO'))
 
 /*
@@ -52,8 +54,8 @@ console.log(convertToLowerCase('CHOCOTONE E OVO DE PÁSCOA JUNTOS NO MERCADO EM 
 */
 
 const getIndex = (character, string) => string.indexOf(character)
-console.log(getIndex('2', '123'))
 
+console.log(getIndex('1', '123'))
 
 /*
   05
@@ -62,8 +64,9 @@ console.log(getIndex('2', '123'))
     passado por argumento existe no array (também passado por argumento).
 */
 
-const isItemExists = (item, array) => array.includes(item)
-console.log(isItemExists(1, [1, 2, 3]))
+const isItemIncluded = (item, array = []) => array.includes(item)
+
+console.log(isItemIncluded(true, [false, null, undefined, '', "", ``, 0, NaN]))
 
 /*
   06
@@ -72,8 +75,9 @@ console.log(isItemExists(1, [1, 2, 3]))
     argumentos em sua invocação;
 */
 
-const concatArrays = (array1, array2) => array1.concat(array2)
-console.log(concatArrays([1, 2, 3], [4, 5, 6]))
+const concatArrays = (firstArray, secondArray) => firstArray.concat(secondArray)
+
+console.log(concatArrays([1, 2, 3], [10, 20, 30]))
 
 /*
   07
@@ -82,11 +86,12 @@ console.log(concatArrays([1, 2, 3], [4, 5, 6]))
     mas com o último item removido.
 */
 
-const removeLastItem = array => {
+const removeLastItem = (array = []) => {
   array.pop()
   return array
 }
-console.log(removeLastItem([1, 2, 3]))
+
+console.log(removeLastItem(['João', 'Maria']))
 
 /*
   08
@@ -95,10 +100,9 @@ console.log(removeLastItem([1, 2, 3]))
     invocação é null.
 */
 
-const isNull = value => {
-  return value === null
-}
-console.log(isNull(null))
+const isNull = value => value === null
+
+console.log(isNull('null'))
 
 /*
   09
@@ -111,15 +115,13 @@ console.log(isNull(null))
     foi exibido.
 */
 
-const invokeCallback = callback => {
-  callback()
+const invokeCallback = callback => callback('Gabriel Ramos Nogueira')
+
+const logName = name => {
+  console.log(name)
 }
 
-const showName = () => {
-  console.log('Gabriel Ramos Nogueira')
-}
-
-invokeCallback(showName)
+invokeCallback(logName)
 
 /*
   10
@@ -132,12 +134,16 @@ invokeCallback(showName)
     resulte no triplo de 33.
 */
 
-const callCallback = callback => callback(33)
+const callCallback = (value, callback) => {
+  return callback(value)
+}
 
-const triple = number => number * 3
+const triple = number => {
+  return number * 3
+}
 
-console.log(callCallback(triple))
-
+console.log(callCallback(33, triple))
+ 
 /*
   11
 
@@ -149,13 +155,14 @@ console.log(callCallback(triple))
 
 const numbers = [1, 2, 3]
 
-const showArrayInfo = (number, index, array) => {
+const showNumberInfo = (item, index, array) => {
   const itemPosition = index + 1
   const items = array.join(', ')
-  console.log(`O ${itemPosition}º item do array [${items}] é ${number}.`)
+
+  console.log(`O ${itemPosition}º item do array [${items}] é ${item}.`)
 }
 
-numbers.forEach(showArrayInfo)
+numbers.forEach(showNumberInfo)
 
 /*
   12
@@ -168,7 +175,13 @@ numbers.forEach(showArrayInfo)
 const letters = ['v', 'e', 'p']
 let lettersCopy = []
 
-letters.forEach(letter => lettersCopy.push(letter))
+// for (let i = 0; i < letters.length; i++) {
+//   lettersCopy.push(letters[i])
+// }
+
+letters.forEach(letter => {
+  lettersCopy.push(letter)
+})
 
 console.log(lettersCopy)
 
@@ -201,7 +214,9 @@ const review = [
 
 let paragraphs = ''
 
-const createParagraphs = paragraph => paragraphs += `<p>${paragraph}</p>`
+const createParagraphs = paragraph => {
+  paragraphs += `<p>${paragraph}</p>`
+}
 
 review.forEach(createParagraphs)
 
@@ -228,7 +243,7 @@ section.innerHTML = paragraphs
     pessoas já mencionadas no início da mensagem).
 */
 
-const showLikesMessage = names => {
+const getLikesMessage = (names = []) => {
   const firstName = names[0]
   const secondName = names[1]
   const thirdName = names[2]
@@ -236,16 +251,16 @@ const showLikesMessage = names => {
 
   switch (names.length) {
     case 0:
-      return 'Ninguem curtiu isso.'
-    case 1:  
-      return `${firstName} curtiu isso.`
-    case 2: 
-      return `${firstName} e ${secondName} curtiram isso.`
+      return 'Ninguém curtiu isso'
+    case 1:
+      return `${firstName} curtiu isso`
+    case 2:
+      return `${firstName} e ${secondName} curtiram isso`
     case 3:
-      return `${firstName}, ${secondName} e ${thirdName} curtiram isso.`
-    default: 
+      return `${firstName}, ${secondName} e ${thirdName} curtiram isso`
+    default:
       return `${firstName}, ${secondName} e mais ${totalNamesMinusTwo} pessoas curtiram isso`
   }
 }
 
-console.log(showLikesMessage(['Rafael', 'João', 'Maria', 'Edson']))
+console.log(getLikesMessage(['Gabriel', 'Edson', 'Roger', 'Christian']))
