@@ -1,7 +1,8 @@
+// adicionando métodos
 let user = {
-  name: 'John',
-  age: 19,
-  email: 'john@gmail.com',
+  name: 'João', 
+  age: 31,
+  email: 'joaocardoso@gmail.com',
   city: 'São Paulo',
   blogPosts: ['Empadão de frango', '4 receitas de purê de batata'],
   login: function () {
@@ -12,10 +13,6 @@ let user = {
   }
 }
 
-user.login() 
+user.login()
 
 user.logout()
-
-/*
-  - Métodos são funções, mas que são declaradas dentro de um objeto, e para invoca-lo utiliza-se notação de ponto.
-*/

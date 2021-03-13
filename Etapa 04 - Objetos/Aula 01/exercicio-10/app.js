@@ -11,11 +11,13 @@
 */
 
 let cat = {
-  name: 'Margaret',
-  age: 2,
-  color: 'Gray',
-  bestFriends: ['Bianca', 'Chimbinha'],
-  sound: () => 'Miaaaaau'  
+  name: 'Bola de neve',
+  age: 3,
+  color: 'Branca',
+  bestFriends: ['Bianca', 'Bob'],
+  sound: function () {
+    return 'Miauuu'
+  }
 }
 
 console.log(cat)
@@ -38,6 +40,7 @@ console.log(`Até aqui, o objeto "cat" possui as seguintes propriedades e valore
 */
 
 cat.age += 2
+
 console.log(cat.age)
 
 /*
@@ -48,9 +51,12 @@ console.log(cat.age)
     adicionado.
 */
 
-const addFriend = friend => cat.bestFriends.push(friend)
+const addFriend = (friend, object) => {
+  object.bestFriends.push(friend)
+}
 
-addFriend('Cobalto')
+addFriend('Abigail', cat)
+
 console.log(cat.bestFriends)
 
 /*
@@ -62,13 +68,15 @@ console.log(cat.bestFriends)
     colchetes.
 */
 
-const addCatColor = (cat, color) => {
-  cat['color'] = [cat['color']]
-  cat['color'].push(color)
+const changeColor = (object) => {
+  object['color'] += ' e cinza' 
 }
 
-addCatColor(cat, 'Brown')
-console.log(cat.color)
+changeColor(cat)
+
+const colorProperty = 'color'
+
+console.log(cat[colorProperty])
 
 /*
   06
@@ -78,8 +86,9 @@ console.log(cat.color)
   - Utilize a função para exibir no console se "cat" é um objeto.
 */
 
-const isObject = value => typeof value === 'object'
-console.log(isObject(cat))
+const isAnObject = value => typeof value === 'object'
+
+console.log(isAnObject(cat))
 
 /*
   07
@@ -92,15 +101,21 @@ console.log(isObject(cat))
 */
 
 let dog = {
-  name: 'Tulipa',
-  age: 6,
-  color: 'White',
-  bestFriends: ['Gaia', 'Pretinho'],
-  sound: () => 'Au Au'
+  name: 'Milton',
+  age: 3,
+  color: 'Marrom',
+  bestFriends: ['Apolo', 'Tulipa'],
+  sound: function () {
+    return 'wooooffff'
+  }
 }
 
 const getAgeMessage = (cat, dog) => 
   `A soma das idades de ${cat.name} e ${dog.name} é ${cat.age + dog.age}.`
+
+const ageMessage = getAgeMessage(cat, dog)
+
+console.log(ageMessage)
 
 /*
   08
@@ -110,12 +125,16 @@ const getAgeMessage = (cat, dog) =>
   - Como você refatoraria esta função?
 */
 
-const isAnSUV = car => [
-  'Honda HR-V',
-  'Jeep Renegade',
-  'Ford EcoSport',
-  'Hyundai iX35'
-].includes(car)
+const isAnSUV = car => {
+  const isASUVModel = [
+    'Honda HR-V', 
+    'Jeep Renegade', 
+    'Ford EcoSport', 
+    'Hyundai iX35'
+  ].includes(car)
+
+  return isASUVModel
+}
 
 console.log(isAnSUV('Honda Civic'))
 console.log(isAnSUV('Ford EcoSport'))
@@ -134,14 +153,15 @@ console.log(isAnSUV('Ford EcoSport'))
 */
 
 const getTypeDefinition = type => {
-  return {
+  let obj = {
     null: 'Seta, explicitamente, uma variável sem valor.',
     undefined: 'Representa um valor não-setado.',
     object: 'Arrays, Datas, Objetos literais, Funções, etc.'
-  }[type]
+  }
 
+  return obj[type]
 }
 
 console.log(getTypeDefinition('null'))
-console.log(getTypeDefinition('undefined'))
 console.log(getTypeDefinition('object'))
+console.log(getTypeDefinition('undefined'))
