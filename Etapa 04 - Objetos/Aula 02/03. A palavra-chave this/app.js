@@ -1,3 +1,4 @@
+// a palavra-chave this
 let user = {
   name: 'João',
   age: 31,
@@ -5,10 +6,10 @@ let user = {
   city: 'São Paulo',
   blogPosts: ['Empadão de frango', '4 receitas de purê de batata'],
   login () {
-    console.log('O usuário está logado')
+    console.log('Usuário logado')
   },
   logout () {
-    console.log('O usuário está deslogado')
+    console.log('Usuário deslogado')
   },
   logBlogPosts () {
     console.log(`${this.name} escreveu os seguintes posts:`)
@@ -20,4 +21,3 @@ let user = {
 }
 
 user.logBlogPosts()
-console.log(this)

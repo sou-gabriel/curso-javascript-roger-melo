@@ -5,7 +5,7 @@
   - Ela deve ter um escopo global.
 */
 
-const name = 'Gabriel Ramos Nogueira'
+const name = 'Gabriel'
 
 /*
   02
@@ -21,12 +21,14 @@ const name = 'Gabriel Ramos Nogueira'
   - Você sabe por que isso aconteceu?
 */
 
-const showAge = () => {
-  let age = 19
-  console.log(age)
+const logAge = () => {
+  let age = 20
+
+  console.log(name, age)
 }
 
-showAge()
+logAge()
+
 // console.log(age)
 
 /*
@@ -48,9 +50,9 @@ showAge()
 */
 
 let car = {
-  name: 'Fiat Uno',
+  name: 'Volcano',
   brand: 'Fiat',
-  colors: ['Branco', 'Cinza', 'Preto'],
+  colors: ['Branco', 'Vermelho', 'Azul'],
   isRunning: false,
   run () {
     this.isRunning = true
@@ -62,7 +64,8 @@ let car = {
   },
   getColorsMessage () {
     const lastItem = this.colors[this.colors.length - 1]
-    const colors = this.colors.join(', ').replace(`, ${lastItem}` , ` e ${lastItem}`)
+    const colors = this.colors.join(', ').replace(`, ${lastItem}`, ` e ${lastItem}`)
+
     return `O ${this.name} está disponível nas cores ${colors}`
   }
 }
@@ -74,7 +77,7 @@ let car = {
 */
 
 console.log(car.run())
-console.log(car.isRunning)
+console.log(car.isRunning === true)
 
 /*
   05
@@ -83,7 +86,7 @@ console.log(car.isRunning)
 */
 
 console.log(car.stop())
-console.log(car.isRunning)
+console.log(car.isRunning === false)
 
 /*
   06
