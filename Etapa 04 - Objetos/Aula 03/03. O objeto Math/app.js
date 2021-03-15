@@ -1,15 +1,18 @@
+// o objeto Math
 console.log(Math)
 console.log(Math.PI)
+console.log(Math.E)
 
-// Arredondamentos
-const area = 7.7
+const area = 7.2
 
 console.log(Math.round(area))
 console.log(Math.floor(area))
 console.log(Math.ceil(area))
 console.log(Math.trunc(area))
 
-// Gerar números aleatórios
+// números aleatórios
 const randomNumber = Math.random()
+
+console.log(randomNumber)
 
 console.log(Math.round(randomNumber * 100))
