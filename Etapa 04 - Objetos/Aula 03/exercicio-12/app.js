@@ -29,9 +29,9 @@ const best2019Movies = [
 
 let message = 'Segundo o site Omelete, os melhores filmes de 2019 são:'
 
-const generateMovieMessage = movie => {  
+const generateMovieMessage = video => {
   message += `
-  - ${movie.title}, dirigido por ${movie.directedBy}`
+  - ${video.title}, dirigido por ${video.directedBy}`
 }
 
 best2019Movies.forEach(generateMovieMessage)
@@ -73,6 +73,7 @@ const youtubeUser = {
   },
   getRecentVideos () {
     console.log(`Vídeos recentes de ${this.name}:`)
+
     this.videos.recentVideos.forEach(video => {
       console.log(video.title)
     })
@@ -89,6 +90,7 @@ youtubeUser.getRecentVideos()
 
 console.log(Math.PI)
 
+
 /*
   04
 
@@ -97,6 +99,7 @@ console.log(Math.PI)
 */
 
 const firstNumber = 8.3
+
 console.log(Math.ceil(firstNumber))
 
 /*
@@ -107,6 +110,7 @@ console.log(Math.ceil(firstNumber))
 */
 
 const secondNumber = 3.5
+
 console.log(Math.round(secondNumber))
 
 /*
@@ -117,6 +121,7 @@ console.log(Math.round(secondNumber))
 */
 
 const thirdNumber = 8.9
+
 console.log(Math.floor(thirdNumber))
 
 /*
@@ -126,6 +131,7 @@ console.log(Math.floor(thirdNumber))
 */
 
 const fourthNumber = 5.5
+
 console.log(Math.trunc(fourthNumber))
 
 /*
@@ -135,5 +141,6 @@ console.log(Math.trunc(fourthNumber))
     aleatório de 0 à 10, incluindo 0 e 10.
 */
 
-const randomNumber = Math.random() * 10
-console.log(Math.round(randomNumber))
+const randomNumber = Math.random()
+
+console.log(Math.round(randomNumber * 10))
