@@ -16,9 +16,9 @@ h1.textContent = h1.textContent.toUpperCase()
   - Cada número deve estar dentro de uma <li> com a classe "number".
 */
 
-const ul = document.querySelector('.numbers')
-
 const numbers = [ 53, 24, 3, 8, 1, 6, 57, 80, 77, 98, 55 ]
+
+const ul = document.querySelector('.numbers')
 
 const insertNumberIntoUl = number => {
   ul.innerHTML += `<li class="number">${number}</li>`
@@ -38,9 +38,9 @@ const lis = document.querySelectorAll('.number')
 
 const changeLiColor = li => {
   const number = Number(li.textContent)
-  const isEven = number % 2 === 0
-  
-  if (isEven) {
+  const isEvenNumber = number % 2 === 0
+
+  if (isEvenNumber) {
     li.style.color = 'lightblue'
     return
   }

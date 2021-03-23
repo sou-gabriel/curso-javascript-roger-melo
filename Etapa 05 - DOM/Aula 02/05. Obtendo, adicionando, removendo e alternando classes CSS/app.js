@@ -9,14 +9,17 @@
 // const paragraphs = document.querySelectorAll('p')
 
 // paragraphs.forEach(paragraph => {
-//   if (paragraph.innerText.includes('error')) {
+//   if (paragraph.textContent.includes('error')) {
 //     paragraph.classList.add('error')
-//   } else if (paragraph.innerText.includes('sucess')) {
+//   } 
+  
+//   if (paragraph.textContent.includes('sucess')) {
 //     paragraph.classList.add('sucess')
 //   }
 // })
 
-const title = document.querySelector('.title')
+const title = document.querySelector('h1')
 
 title.classList.toggle('test')
 title.classList.toggle('test')
+
