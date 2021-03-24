@@ -81,15 +81,15 @@ const videos = [{
   length: '00:02:55'
 }]
 
-const button = document.querySelector('button')
-
-const insertVideoIntoUl = ({ name }) => {
+const insertVideoLi = ({ name }) => {
   ul.innerHTML += `<li>${name}</li>`
 }
 
 const handleButtonClick = () => {
-  videos.forEach(insertVideoIntoUl)
+  videos.forEach(insertVideoLi)
 }
+
+const button = document.querySelector('button')
 
 button.addEventListener('click', handleButtonClick)
 

@@ -1,12 +1,8 @@
-/*
-  - Obter a referência do elemento;
-  - Adicionar um listener de evento neste elemento;
-  - Executar uma ação.
-*/
-
 const ul = document.querySelector('ul')
+
+// ul.remove()
+
 const lis = document.querySelectorAll('li')
-const button = document.querySelector('button')
 
 lis.forEach(li => {
   li.addEventListener('click', event => {
@@ -16,10 +12,11 @@ lis.forEach(li => {
   })
 })
 
+const button = document.querySelector('button')
+
 button.addEventListener('click', () => {
   const li = document.createElement('li')
 
-  li.textContent = 'Novo texto'
-  // ul.prepend(li) 
-  ul.append(li)
+  li.textContent = 'Novo item'
+  ul.prepend(li)
 })

@@ -7,6 +7,6 @@ li {
   max-width: 200px;
   padding: 8px;
   margin: 8px 0;
-  background-color: #eee;
+  background: #eee;
   border: 1px dotted #ddd;
 }
