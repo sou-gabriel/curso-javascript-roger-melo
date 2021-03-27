@@ -13,10 +13,9 @@ const clearInput = () => {
 
 const logMessage = message => {
   console.log(message)
-  clearInput()
 }
 
-const handleFormSubmission = event => {
+const handleSubmit = event => {
   event.preventDefault()
 
   const input = event.target.input
@@ -31,7 +30,7 @@ const handleFormSubmission = event => {
   logMessage('Valor inválido =(')
 }
 
-form.addEventListener('submit', handleFormSubmission)
+form.addEventListener('submit', handleSubmit)
 
 /*
   02
@@ -49,7 +48,6 @@ form.addEventListener('submit', handleFormSubmission)
 */
 
 const paragraph = document.querySelector('p')
-
 const pattern = /documentation/
 const result = pattern.test(paragraph.textContent)
 
@@ -64,9 +62,8 @@ console.log(result)
 */
 
 const B99Message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta'
-
-const B99Regex = /[A-Z0-9]{3}/
-const B99Result = B99Regex.test(B99Message)
+const B99Pattern = /[A-Z0-9]{3}/
+const B99Result = B99Pattern.test(B99Message)
 
 console.log(B99Result)
 
