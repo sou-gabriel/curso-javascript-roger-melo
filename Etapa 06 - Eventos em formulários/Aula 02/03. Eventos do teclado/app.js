@@ -9,22 +9,21 @@ form.addEventListener('submit', event => {
   const isAValidUsername = testUsername(event.target.username.value)
 
   if (isAValidUsername) {
-    feedback.textContent = 'O valor do input é válido =)'
+    feedback.textContent = 'username válido :)'
     return
   }
 
-  feedback.textContent = 'O input deve conter apenas letras e deve ter entre 6 a 12 caracteres'
+  feedback.textContent = 'o username deve conter entre 6 a 12 caracteres e deve conter apenas letras'
 })
 
-form.username.addEventListener('keyup', event => {  
-  feedback.textContent = null
-
+form.username.addEventListener('keyup', event => {
   const isAValidUsername = testUsername(event.target.value)
+  console.log(event)
 
   if (isAValidUsername) {
-    event.target.setAttribute('class', 'sucess')
+    form.username.setAttribute('class', 'sucess')
     return
   }
 
-  event.target.setAttribute('class', 'error')
+  form.username.setAttribute('class', 'error')  
 })

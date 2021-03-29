@@ -18,3 +18,16 @@ input, button {
 	margin: 10px auto;
 	padding: 4px;
 }
+
+input {
+	border: 1px solid #ddd;
+	outline: none;
+}
+
+.sucess {
+	border: 2px solid green;
+}
+
+.error {
+	border: 2px solid red;
+}

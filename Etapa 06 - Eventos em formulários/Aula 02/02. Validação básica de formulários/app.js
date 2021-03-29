@@ -9,9 +9,9 @@ form.addEventListener('submit', event => {
   const isAValidUsername = usernameRegex.test(username)
 
   if (isAValidUsername) {
-    feedback.textContent = 'Valor válido =)'
+    feedback.textContent = 'username válido :)'
     return
-  }  
+  }
 
-  feedback.textContent = 'Username deve conter apenas letras e deve ter entre 6 a 12 caracteres'
+  feedback.textContent = 'o username deve conter entre 6 a 12 caracteres e deve conter apenas letras'
 })
