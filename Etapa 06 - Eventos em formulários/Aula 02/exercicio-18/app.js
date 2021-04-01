@@ -21,6 +21,88 @@
   Dica: pesquise pelo método "insertAdjacentElement", no MDN;
 */
 
+const inputUsername = document.querySelector('#username')
+const form = document.querySelector('form')
+const button = document.querySelector('button')
+
+const paragraphUsernameFeedback = document.createElement('p')
+const paragraphSubmitFeedback = document.createElement('p')
+
+paragraphSubmitFeedback.setAttribute('data-js', 'paragraph-submit-feedback')
+
+const insertParagraphIntoDOM = paragraphInfo => {
+  const { paragraph, text, className, previousSibling } = paragraphInfo
+
+  paragraph.textContent = text
+  paragraph.setAttribute('class', className)
+  previousSibling.insertAdjacentElement('afterend', paragraph)
+}
+
+const removeParagraphSubmit = () => {
+  const paragraphSubmitFeedbackExists = document.querySelector('[data-js="paragraph-submit-feedback"]')
+
+  if (paragraphSubmitFeedbackExists) {
+    paragraphSubmitFeedbackExists.remove()
+  }
+}
+
+const testUsername = inputValue => /^[a-zA-Z]{6,}$/.test(inputValue)
+
+const invalidUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas',
+  className: 'username-help-feedback',
+  previousSibling: inputUsername
+}
+
+const validUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'Username válido =)',
+  className: 'username-success-feedback',
+  previousSibling: inputUsername
+}
+
+const invalidSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text: 'Por favor, insira um username válido',
+  className: 'submit-help-feedback',
+  previousSibling: button
+}
+
+const validSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text: 'Dados enviados =)',
+  className: 'submit-success-feedback',
+  previousSibling: button
+}
+
+const showUsernameInfo = event => {
+  removeParagraphSubmit()
+  const isAInvalidUsername = !testUsername(event.target.value)
+
+  if (isAInvalidUsername) {
+    insertParagraphIntoDOM(invalidUsernameInfo)
+    return
+  }
+
+  insertParagraphIntoDOM(validUsernameInfo)
+}
+
+const showSubmitInfo = event => {
+  event.preventDefault()  
+  const isAInvalidSubmit = !testUsername(event.target.username.value)
+
+  if (isAInvalidSubmit) {
+    insertParagraphIntoDOM(invalidSubmitInfo)
+    return
+  }
+
+  insertParagraphIntoDOM(validSubmitInfo)
+}
+
+inputUsername.addEventListener('input', showUsernameInfo)
+form.addEventListener('submit', showSubmitInfo)
+
 /*
   02
 
@@ -53,3 +135,16 @@
   Spoiler alert: este tipo de exercício será frequente em etapas mais avançadas  
   do curso, onde falaremos sobre TDD. Vá se aquecendo =D
 */
+
+const some = (arr, func) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i])) {
+      return true
+    }
+  }
+
+  return false
+}
+
+console.log(some([1, 2, 3], item => item > 2))
+console.log(some([1, 3, 5], item => item === 0))
