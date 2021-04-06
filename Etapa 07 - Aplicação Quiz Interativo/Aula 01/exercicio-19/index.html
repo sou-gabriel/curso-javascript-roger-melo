@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <title>Quiz Interativo | JavaScript</title>
+</head>
+<body>
+  <header class="header">  
+    <h1 class="header__title">Quiz - JavaScript</h1> 
+  </header>
+
+  <section data-js="final-score-container" class="section section--hide">
+    <p class="section__result">Você acertou <span>0%</span> do quiz!</p>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <form data-js="quiz-form" class="quiz">
+        <h2 class="quiz__title">E aí parça, você é bom no JavaScript? 🤔</h2>
+
+        <!-- Alternativa 1 -->
+        <fieldset class="quiz__field">
+          <p class="quiz__question">1. Qual método responsável por remover o último item de um array?</p>
+
+          <div class="quiz__alternative">            
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion1" value="A" checked>
+              pop()                
+            </label>
+          </div>
+
+          <div class="quiz__alternative">            
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion1" value="B">
+              shift()       
+            </label>
+          </div>
+
+          <div class="quiz__alternative">            
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion1" value="C">
+              remove()             
+            </label>
+          </div>
+
+          <div class="quiz__alternative">            
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion1" value="D">
+              removeLastItem()         
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Alternativa 2 -->
+        <fieldset class="quiz__field">
+          <p class="quiz__question">2. O tipo do valor retornado pelo método some() é: </p>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion2" value="A" checked>
+              String
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion2" value="B">
+              Object
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion2" value="C">
+              Boolean
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion2" value="D">
+              Undefined
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Alternativa 3 -->
+        <fieldset class="quiz__field">
+          <p class="quiz__question">3. Uma callback consiste em:</p>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion3" value="A" checked>
+              Um objeto passado como argumento da inovocação de uma função
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion3" value="B">
+              Quando uma valor inválido é passado como parâmetro da função
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion3" value="C">
+              Uma ação que ocorre por de baixo dos panos na qual o JavaScript eleva a declaração de uma função tradicional para o topo do arquivo
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion3" value="D">              
+              Uma função passada como argumento durante a invocação de  outra função
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Alternativa 4 -->
+        <fieldset class="quiz__field">
+          <p class="quiz__question">4. O método concat() é um método responsável por:</p>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion4" value="A" checked>
+              Concatenar uma string à outra
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion4" value="B">
+              Gerar um novo array com os itens de dois outros arrays concatenados
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion4" value="C">
+              Realizar a concatenação entre um número e uma string
+            </label>
+          </div>
+
+          <div class="quiz__alternative">
+            <label class="quiz__label">
+              <input type="radio" name="inputQuestion4" value="D">
+              Gerar um novo array com os itens de uma string e uma array concatenados
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="quiz__btn">Enviar</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

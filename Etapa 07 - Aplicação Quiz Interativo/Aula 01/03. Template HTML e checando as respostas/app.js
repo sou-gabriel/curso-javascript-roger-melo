@@ -6,6 +6,7 @@ form.addEventListener('submit', event => {
   event.preventDefault()
 
   let score = 0
+
   const userAnswers = [
     form.inputQuestion1.value,
     form.inputQuestion2.value,
@@ -14,10 +15,8 @@ form.addEventListener('submit', event => {
   ]
 
   userAnswers.forEach((userAnswer, index) => {
-    if (userAnsweform.inputQuestion1.value,r === correctAnswers[index]) {
+    if (userAnswer === correctAnswers[index]) {
       score += 25
     }
   })
-
-  console.log(score)
 })
