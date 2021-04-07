@@ -7,7 +7,7 @@
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const getOddNumbers = number => number % 2 === 1
+const getOddNumbers = randomNumber => randomNumber % 2 === 1
 
 const oddNumbers = randomNumbers.filter(getOddNumbers)
 
@@ -21,9 +21,8 @@ console.log(oddNumbers)
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const getNumbersLessThan501 = (accumulator, number) => {
-  return number < 501 ? ++accumulator : accumulator
-}
+const getNumbersLessThan501 = (accumulator, crazyNumber) => 
+  crazyNumber < 501 ? ++accumulator : accumulator
 
 const numbersLessThan501 = crazyNumbers.reduce(getNumbersLessThan501, 0)
 
@@ -38,9 +37,9 @@ console.log(numbersLessThan501)
 
 const numbers = [5, 7, 3]
 
-const numbersSquared = numbers.map(number => number ** 2)
+const squareNumbers = numbers.map(number => number ** 2)
 
-console.log(numbersSquared)
+console.log(squareNumbers)
 
 /*
   04
@@ -67,21 +66,10 @@ const cart = [
   - Nome 3
 */
 
-const productList = cart.reduce((accumulator, { name }) => {
-  return `${accumulator}- ${name}\n`
-}, '')
+const productList = cart.reduce((accumulator, { name }) => 
+  `${accumulator}- ${name}\n`, '')
 
 console.log(productList)
-
-
-/*
-  accumulator = 
-  - Dark Souls III
-  - Shadow of the Tomb Raider
-  - Sekiro: Shadows Die Twice
-  - Resident Evil 2
-  - Death Stranding
-*/
 
 /*
   05
@@ -104,10 +92,9 @@ const tarantinoMovies = [
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
 
-const filmsReleasedBefore2000 = tarantinoMovies
-  .filter(({ release }) => release < 2000)
+const moviesBefore2000 = tarantinoMovies.filter(({ release }) => release < 2000)
 
-console.log(filmsReleasedBefore2000)
+console.log(moviesBefore2000)
 
 /*
   06
@@ -126,9 +113,9 @@ const tvShows = [
   { name: 'Watchmen', releaseYear: 2019 }
 ]
 
-const showNames = tvShows.map(({ name }) => name)
+const seriesName = tvShows.map(({ name }) => name)
 
-console.log(showNames)
+console.log(seriesName)
 
 /*
   07
