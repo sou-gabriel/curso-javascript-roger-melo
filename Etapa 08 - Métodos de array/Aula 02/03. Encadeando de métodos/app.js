@@ -5,8 +5,9 @@ const books = [
   { name: 'Quem Pensa Enriquece', price: 50 },
   { name: 'O livro da ciência', price: 40 }
 ]
-
+  
 const booksOnSale = books
   .filter(({ price }) => price > 20)
-  .map(({ name, price }) => `O preço do livro "${name}" caiu para ${price} reais`) 
+  .map(({ name, price }) => 
+    `O preço do livro "${name}" para ${price} reais`)
 debugger

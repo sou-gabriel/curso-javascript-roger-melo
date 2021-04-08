@@ -9,7 +9,6 @@
 const getArrayCopy = array => array.map(item => item)
 
 const names = ['Caio', 'André', 'Dário']
-
 const namesInAlphabeticalOrder = getArrayCopy(names).sort()
 
 console.log(namesInAlphabeticalOrder)
@@ -45,11 +44,10 @@ console.log(charactersOrderedById)
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-const numberInAscedingOrder = getArrayCopy(numbers)
+const numbersInAscendingOrder = getArrayCopy(numbers)
   .sort((item2, item1) => item2 - item1)
 
-console.log(numberInAscedingOrder)
-
+console.log(numbersInAscendingOrder)
 
 /*
   04
@@ -58,6 +56,7 @@ console.log(numberInAscedingOrder)
 */
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
+
 const numberGreatherThan50 = randomNumbers.find(number => number > 50)
 
 console.log(numberGreatherThan50)
@@ -72,9 +71,9 @@ console.log(numberGreatherThan50)
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
-const namesInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
+const peopleInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
 
-console.log(namesInReverseAlphabeticalOrder)
+console.log(peopleInReverseAlphabeticalOrder)
 
 /*
   06
@@ -86,10 +85,10 @@ console.log(namesInReverseAlphabeticalOrder)
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
-const cookedIngredients = ingredients.reduce((acc, item, index, array) => {
-  const correctGenderWord = /a$/.test(item) ? 'cozida' : 'cozido'
+const cookedIngredients = ingredients.reduce((acc, ingredient, index, array) => {
+  const correctGenderWord = /a$/.test(ingredient) ? 'cozida' : 'cozida'
   const isLastItem = index === array.length - 1
-  const ingredientMessage = acc + `${item} ${correctGenderWord}`
+  const ingredientMessage = `${acc}${ingredient} ${correctGenderWord}`
 
   return isLastItem ? ingredientMessage : `${ingredientMessage}, `
 }, '')
@@ -144,14 +143,14 @@ const pets = [
 
 const dogsInHumanAge = pets
   .filter(({ type }) => type === 'Dog')
-  .map(({ age }) => age * 7)
+  .map(({ name, age, gender, type }) => ({ name, age: age * 7, gender, type }))
 
 console.log(dogsInHumanAge)
 
 /*
   09
   
-  - Considerando o array topBrazilMovies, através do map ou do reduce, insira 
+  - Considerando o array topBrazilmovies, através do map ou do reduce, insira 
     os nomes dos filmes na ul do index.html.
 */
 
