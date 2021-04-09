@@ -6,7 +6,9 @@
 */
 
 const myString = '    JS      '
-console.log(myString.trim())
+const myStringTrimmed = myString.trim()
+
+console.log(myStringTrimmed)
 
 /*
   02
@@ -24,11 +26,9 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const peopleOrderedByScore = people
+const peopleOrderedById = people
   .map(({ firstName, lastName, score }) => ({ firstName, lastName, score }))
   .sort((item2, item1) => item2.score - item1.score)
-
-console.log(peopleOrderedByScore)
 
 /*
   03
@@ -42,7 +42,7 @@ console.log(peopleOrderedByScore)
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 
-const threeLetterAnimals = animals.filter(({ length }) => length === 3)
+const threeLettersAnimals = animals.filter(({ length }) =>length === 3)
 
 /*
   04
@@ -51,7 +51,7 @@ const threeLetterAnimals = animals.filter(({ length }) => length === 3)
     nome de cada animal. Ex.: [6, 8, 2].
 */
 
-const amountOfAnimalLetters = animals.map(({ length }) => length)
+const animalsNameLength = animals.map(({ length }) => length)
 
 /*
   05
@@ -69,7 +69,7 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const friendsWhoLiveNearMe = friends
+const nameOfFriendsNearMe = friends
   .filter(({ nearMe }) => nearMe)
   .map(({ name }) => name)
 
@@ -82,9 +82,9 @@ const friendsWhoLiveNearMe = friends
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const sumOfOddNumbers = numbers
+const oddNumbersSum = numbers
   .filter(number => number % 2)
-  .reduce((acc, oddNumber) => acc + oddNumber, 0)
+  .reduce((acc, number) => acc + number, 0)
 
 /*
   07
@@ -107,15 +107,6 @@ const data = [{
   population: 263991379
 }]
 
-const sumOfPopulation = data
+const populationSum = data
   .filter(({ country }) => country !== 'China')
   .reduce((acc, { population }) => acc + population, 0)
-
-/*
-  1° Iteração
-  acc = 0
-  acc = 0 + 1339180127
-  acc = 1339180127 + 324459463
-  acc = 1.663.639.590 + 263991379
-  acc = 1.927.630.969
-*/

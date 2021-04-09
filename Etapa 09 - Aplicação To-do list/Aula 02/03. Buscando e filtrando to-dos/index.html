@@ -13,30 +13,30 @@
     <header class="text-center text-light my-4">
       <h1 class="mb-4">To-do List</h1>
       <form class="form-search">
-        <input class="form-control m-auto" type="text" name="search" placeholder="Buscar to-do" autofocus />
+        <input class="form-control m-auto" type="text" name="search" placeholder="Buscar to-do" autocomplete="off"/>
       </form>
     </header>
 
     <ul class="todos-container list-group mx-auto text-light">
-      <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="Assistir Breaking Bad">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>Assistir Breaking Bad</span>
-        <i class="far fa-trash-alt" data-trash="Assistir Breaking Bad"></i>
+        <i class="far fa-trash-alt delete"></i>
       </li>
 
-      <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="Planejar aulas">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>Planejar aulas</span>
-        <i class="far fa-trash-alt" data-trash="Planejar aulas"></i>
+        <i class="far fa-trash-alt delete"></i>
       </li>
 
-      <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="Fazer exercícios físicos">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>Fazer exercícios físicos</span>
-        <i class="far fa-trash-alt" data-trash="Fazer exercícios físicos"></i>
+        <i class="far fa-trash-alt delete"></i>
       </li>
     </ul>
 
     <form class="form-add-todo text-center my-4">
       <label class="text-light">Adicionar to-do</label>
-      <input class="form-control m-auto" type="text" name="add" />
+      <input class="form-control m-auto" type="text" name="add" autofocus autocomplete="off" />
     </form>
   </div>
 
