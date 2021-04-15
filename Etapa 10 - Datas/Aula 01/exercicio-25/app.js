@@ -38,8 +38,7 @@ console.log(present)
   - Baseado no objeto que você acabou de criar, exiba o ano atual no console.
 */
 
-const year = present.getFullYear()
-console.log(year)
+console.log(present.getFullYear())
 
 /*
   04
@@ -48,7 +47,7 @@ console.log(year)
   - Exiba o objeto no console.
 */
 
-const past = new Date('March 7 2001 17:00:00')
+const past = new Date('March 7 2021 21:14:00')
 console.log(past)
 
 /*
@@ -57,8 +56,7 @@ console.log(past)
   - Exiba, no console, a hora do objeto que você acabou de criar.
 */
 
-const pastHours = past.getHours()
-console.log(pastHours)
+console.log(past.getHours())
 
 /*
   06
@@ -67,8 +65,7 @@ console.log(pastHours)
   - Exiba o objeto no console.
 */
 
-
-const future = new Date('December 25 2020 00:00:00')
+const future = new Date('March 7 2022 18:05:00')
 console.log(future)
 
 /*
@@ -77,19 +74,9 @@ console.log(future)
   - Exiba no console a quantidade de dias entre o momento futuro e o passado.
 */
 
-const milliseconds = future.getTime() - past.getTime()
-
-const seconds = Math.round(milliseconds / 1000)
-// console.log({ seconds })
-
-const minutes = Math.round(seconds / 60)
-// console.log({ minutes })
-
-const hours = Math.round(minutes / 60)
-// console.log({ hours })
-
-const days = Math.round(hours / 24)
-console.log({ days })
+const difference = future.getTime() - past.getTime()
+const differenceInDays = Math.round(difference / 1000 / 60 / 60 / 24)
+console.log(differenceInDays)
 
 /*
   08

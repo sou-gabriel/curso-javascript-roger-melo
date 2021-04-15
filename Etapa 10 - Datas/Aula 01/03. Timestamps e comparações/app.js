@@ -1,7 +1,5 @@
-const past = new Date('May 2020 7:47:00')
+const past = new Date('May 1 2020 7:47:00')
 const present = new Date()
-
-console.log(present.getTime(), past.getTime())
 
 const difference = present.getTime() - past.getTime()
 console.log(difference)
@@ -20,5 +18,5 @@ console.log({ days })
 
 console.log(`Escrito há ${days} dias`)
 
-const timestamp = 1607692076026
+const timestamp = 1675938474990 
 console.log(new Date(timestamp))
