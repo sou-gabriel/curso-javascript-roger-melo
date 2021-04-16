@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background: linear-gradient(to right, #108dc7, #ef8e38);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 53px;
+}
+
+.clock-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clock-container span {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0px 15px 2px rgba(0, 0, 0, 0.445);
+}
