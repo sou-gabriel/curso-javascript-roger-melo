@@ -10,7 +10,7 @@ console.log('Linha 3')
 console.log('Linha 4')
 
 setTimeout(() => {
-  console.log('Função de callback executada')
+  console.log('função de callback executada')
 }, 2000)
 
 console.log('Linha 5')
@@ -30,7 +30,7 @@ function logGreeting (name) {
 }
 
 const x = callback => {
-  callback('Gabriel Ramos Nogueira')
+  callback('Gabriel')
 }
 
 x(logGreeting)
@@ -41,12 +41,10 @@ x(logGreeting)
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
 */
 
-
 const numbers = [3, 4, 10, 20]
-
 const getLessThanFive = num => num < 5
-
 const lesserThanFive = numbers.filter(getLessThanFive)
+
 console.log(lesserThanFive)
 
 /*
@@ -56,10 +54,9 @@ console.log(lesserThanFive)
 */
 
 const prices = [12, 19, 7, 209]
-
 const getTotalPrice = (acc, price) => acc + price
-
 const totalPrice = prices.reduce(getTotalPrice, 0)
+
 console.log(`Preço total: ${totalPrice}`)
 
 /*
@@ -71,8 +68,10 @@ console.log(`Preço total: ${totalPrice}`)
 
 let car = { color: 'amarelo' }
 let secondCar = car
-secondCar.color = 'blue'
-console.log(car, secondCar)
+
+secondCar.color = 'azul'
+
+console.log(car.color, secondCar.color)
 
 /*
   06
@@ -84,13 +83,14 @@ console.log(car, secondCar)
     invocada com 3 argumentos'.
 */
 
-const getParameterMessage = (parameter1, parameter2, parameter3) => {
-  return [parameter1, parameter2, parameter3].includes(undefined) 
+const myFunc = (param1, param2, param3) => {
+  const isSomeUndefinedValue = [param1, param2, param3].includes(undefined)  
+  return isSomeUndefinedValue 
     ? 'A função deve ser invocada com 3 argumentos'
     : 'A função foi invocada com 3 argumentos'
 }
 
-console.log(getParameterMessage('', ''))
+console.log(myFunc([], {}, () => {}))
 
 /*
   07
@@ -114,42 +114,46 @@ console.log(getParameterMessage('', ''))
       na frase acima.
 */
 
-const getWordInPluralOrSingular = (quantity, singular, plural) => {
+let booksBox = {
+  spaces: 5,
+  booksIn: 0
+}
+
+const getPluralOrSingular = (quantity, singular, plural) => {
   return quantity === 1 ? singular : plural
 }
 
-const getMessageFromAvailableSpaces = (spaces, booksIn) => {
+const getAvailableSpacesMessage = (spaces, booksIn) => {
   const availableSpaces = spaces - booksIn
-  const fitInThePluralOrSingular = 
-    getWordInPluralOrSingular(availableSpaces, 'cabe', 'cabem')
-  const bookInThePluralOrSingular = 
-    getWordInPluralOrSingular(availableSpaces, 'livro', 'livros')
-  return `Só ${fitInThePluralOrSingular} mais ${availableSpaces} ${bookInThePluralOrSingular}`
-}
-
-let booksBox = {
-  spaces: 5,
-  booksIn: 0  
+  const fitInPluralOrSingular = 
+    getPluralOrSingular(availableSpaces, 'cabe', 'cabem')
+  const bookInPluralOrSingular = 
+    getPluralOrSingular(availableSpaces, 'livro', 'livros')
+  return `Só ${fitInPluralOrSingular} mais ${availableSpaces} ${bookInPluralOrSingular}`
 }
 
 booksBox.addBooks = booksQuantity => {
   const { spaces } = booksBox
-  const isFilled = booksBox.booksIn === spaces
-  const boxSpacesAreNotEnought = booksBox.booksIn + booksQuantity > spaces
+  const isBoxFilled = booksBox.booksIn === spaces
+  const availableSpacesAreNotEnough = booksBox.booksIn + booksQuantity > spaces
 
-  if (isFilled) {
+  if (isBoxFilled) {
     return 'A caixa já está cheia'
   }
 
-  if (boxSpacesAreNotEnought) {
-    return getMessageFromAvailableSpaces(spaces, booksBox.booksIn)
+  if (availableSpacesAreNotEnough) {
+    return getAvailableSpacesMessage(spaces, booksBox.booksIn)
   }
 
   booksBox.booksIn += booksQuantity
-  const booksInThePluralOrSingular = 
-    getWordInPluralOrSingular(booksBox.booksIn, 'livro', 'livros')
-  return `Já há ${booksBox.booksIn} ${booksInThePluralOrSingular} na caixa`
+
+  const bookInPluralOrSingular = getPluralOrSingular(booksBox.booksIn, 'livro', 'livros')
+  return `Já há '${booksBox.booksIn}' ${bookInPluralOrSingular} na caixa`
 }
 
 console.log(booksBox.addBooks(2))
-console.log(booksBox.addBooks(5))
+console.log(booksBox.addBooks(2))
+console.log(booksBox.addBooks(1))
+console.log(booksBox.addBooks(1))
+
+console.log(booksBox)
