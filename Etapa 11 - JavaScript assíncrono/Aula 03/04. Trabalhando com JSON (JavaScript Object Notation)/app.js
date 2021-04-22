@@ -2,19 +2,15 @@ const getTodos = callback => {
   const request = new XMLHttpRequest()
 
   request.addEventListener('readystatechange', () => {
-    const isRequestOk = request.readyState === 4 && request.status === 200
-    const isRequestNotOk = request.readyState === 4
-
-    if (isRequestOk) {
+    if (request.readyState === 4 && request.status === 200) {
       const data = JSON.parse(request.responseText)
       callback(null, data)
       return
     }
 
-    if (isRequestNotOk) {
-      callback('Não foi possível obter os dados', null)
+    if (request.readyState === 4) {
+      callback('Não foi possível obter os dados da API', null)
     }
-
   })
 
   request.open('GET', './todos.json')

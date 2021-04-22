@@ -21,6 +21,7 @@ const request = new XMLHttpRequest()
 request.addEventListener('readystatechange', () => {
   const isRequestOk = request.readyState === 4 && request.status === 200
   const isRequestNotOk = request.readyState === 4
+
   if (isRequestOk) {
     console.log(request.responseText)
     return
@@ -31,7 +32,7 @@ request.addEventListener('readystatechange', () => {
   }
 })
 
-request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachu')
+request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachuu')
 request.send()
 
 /*
@@ -49,18 +50,16 @@ request.send()
     - Quantos metros você caminhou (number iniciado em 0).
 */
 
-let person = {
+const person = {
   name: 'Gabriel',
   lastName: 'Ramos',
   gender: 'Masculino',
-  age: 19,
-  height: 1.73,
-  weight: 55,
+  age: 20,
+  height: 1.75,
+  weight: 1.55,
   isWalking: false,
-  metersWalked: 0
+  walkedMeters: 0
 }
-
-console.log(person)
 
 /*
   03
@@ -92,16 +91,16 @@ console.log(person.age)
     método 4x, com diferentes metragens passadas por parâmetro.
 */
 
-person.calculateMeters = meters => {
-  person.metersWalked += meters
+person.walk = meters => {
+  person.walkedMeters += meters
   person.isWalking = true
 }
 
-const meters = [13, 22, 45, 20]
+const meters = [10, 17, 5, 81]
 
-meters.forEach(meter => person.calculateMeters(meter))
+meters.forEach(meter => person.walk(meter))
 
-console.log(person.metersWalked, person.isWalking)
+console.log(person.walkedMeters)
 
 /*
   05
@@ -120,21 +119,23 @@ console.log(person.metersWalked, person.isWalking)
       "metro", no singular.
 */
 
-const getSingularOrPlural = (quantity, singular, plural) => 
-  quantity === 1 ? singular : plural
-
-person.introduction = () => {
-  const pronumFemaleOrMale = person.gender === 'Feminino' ? 'a' : 'o'
-  const ageSingularOrPlural = getSingularOrPlural(person.age, 'ano', 'anos')
-  const walkedMetersSingularOrPlural = 
-    getSingularOrPlural(person.metersWalked, 'metro', 'metros')
-  const heightMetersSingularOrPlural =
-    getSingularOrPlural(person.height, 'metro', 'metros')
-
-  return `Oi. Eu sou ${pronumFemaleOrMale} ${person.name} ${person.lastName}, tenho ${person.age} ${ageSingularOrPlural}, ${person.height} ${heightMetersSingularOrPlural} de altura, peso ${person.weight} quilos e, só hoje, eu já caminhei ${person.metersWalked} ${walkedMetersSingularOrPlural}.`
+const getSingularOrPlural = (quantity, singular, plural) => {
+  return quantity === 1 ? singular : plural
 }
 
-console.log(person.introduction())
+person.getIntroduction = () => {
+  const { gender, age, height, walkedMeters, name, lastName, weight } = person
+  const correctGender = gender === 'Feminino' ? 'a' : 'o'
+  const ageInSingularOrPlural = getSingularOrPlural(age, 'ano', 'anos')
+  const heightMeterInSingularOrPlural = 
+    getSingularOrPlural(height, 'metro', 'metros')
+  const walkedMetersInSingularOrPlural = 
+    getSingularOrPlural(walkedMeters, 'metro', 'metros')
+    
+  return `Oi. Eu sou ${correctGender} ${name} ${lastName}, tenho ${age} ${ageInSingularOrPlural}, ${height} ${heightMeterInSingularOrPlural} de altura, peso ${weight} quilos e, só hoje, eu já caminhei ${walkedMeters} ${walkedMetersInSingularOrPlural}.`
+}
+
+console.log(person.getIntroduction())
 
 /*
   06
@@ -148,15 +149,18 @@ console.log(person.introduction())
     - Faça isso até que 7 valores truthy sejam passados.
 */
 
-const checkValue = value => {
-  return value ? true : false
-}
+const isTruthy = value => Boolean(value)
 
-const falsyValues = [false, 0, '', NaN, undefined, null]
-const truthyValues = ['JavaScript', {}, [], 1, 'Hello', () => {}, 'false']
+const falsyValues = [false, 0, '', null, undefined, NaN]
+const truthyValues = [[], {}, 1, () => {}, 'Oi', function () {}, '0']
 
-falsyValues.forEach(falsyValue => console.log(checkValue(falsyValue)))
-truthyValues.forEach(truthyValue => console.log(checkValue(truthyValue)))
+falsyValues.forEach(falsyValue => {
+  console.log(isTruthy(falsyValue))
+})
+
+truthyValues.forEach(truthyValue => {
+  console.log(isTruthy(truthyValue))
+})
 
 /*
   07
@@ -179,25 +183,24 @@ truthyValues.forEach(truthyValue => console.log(checkValue(truthyValue)))
 
 const getBook = bookName => {
   const books = {
-    'O milagre da manhã': { 
-      pages: 196,
-      author: 'Hal Elrod',
-      publishingCompany: 'BestSeller'
-    },
     'O poder da ação': {
       pages: 256,
       author: 'Paulo Vieira',
-      publishingCompany: 'Gente'
+      publishingCompany: 'Gente' 
     },
-    'Clean Code': {
-      pages: 456,
-      author: 'Robert C. Martin',
-      publishingCompany: 'Alta Books'
+    'O poder do hábito': {
+      pages: 464,
+      author: 'Charles Duhigg',
+      publishingCompany: 'Objetiva'
+    },
+    'Jurassic Park': {
+      pages: 528,
+      author: 'Michael Crichton',
+      publishingCompany: 'Editora Aleph'
     }
   }
 
   return books[bookName] || books
 }
 
-console.log(getBook('O milagre da manhã'))
-console.log(getBook())
+console.log(getBook('Jurassic Park'))
