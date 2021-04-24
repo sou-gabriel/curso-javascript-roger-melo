@@ -22,7 +22,7 @@ const getPokemon = (url, callback) => {
 
     if (isRequestOk) {
       const data = JSON.parse(request.responseText)
-      callback(null, `Pokémon obtido: ${data.name}`)
+      callback(null, data)
       return
     }
 
@@ -35,25 +35,21 @@ const getPokemon = (url, callback) => {
   request.send()
 }
 
-const logPokemonMessage = (error, data) => {
-  if (error) {
-    console.log(error)
-    return
-  }  
-  console.log(data)
-}
+const logPokemonData = (error, data) => error 
+  ? console.log(error) 
+  : console.log(`Pokémon obtido: ${data.name}`)
 
-const getPokemonUrl = name => `https://pokeapi.co/api/v2/pokemon/${name}`
+const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}`
 
-const bulbasaur = getPokemonUrl('bulbasaur')
-const charmander = getPokemonUrl('charmander')
-const squirtle = getPokemonUrl('squirtle')
+const bulbasaur = getPokemonUrl(1)
+const charmander = getPokemonUrl(4)
+const squirtle = getPokemonUrl(7)
 
 getPokemon(bulbasaur, (error, data) => {
-  logPokemonMessage(error, data)
+  logPokemonData(error, data)
   getPokemon(charmander, (error, data) => {
-    logPokemonMessage(error, data)
-    getPokemon(squirtle, logPokemonMessage)
+    logPokemonData(error, data)
+    getPokemon(squirtle, logPokemonData)
   })
 })
 
@@ -79,15 +75,16 @@ getPokemon(bulbasaur, (error, data) => {
   curso, onde falaremos sobre TDD. Vá se aquecendo =)
 */
 
-const map = (array, myFunc) => {
-  let newArray = [] 
-
+const map = (array, callback) => {
+  let newArray = []
+  
   const addNewItemToNewArray = item => {
-    const newItem = myFunc(item)
+    const newItem = callback(item)
     newArray.push(newItem)
-  }  
+  }
 
-  array.forEach(addNewItemToNewArray) 
+  array.forEach(addNewItemToNewArray)
+
   return newArray
 }
 
@@ -103,7 +100,7 @@ console.log(map([1, 2, 3], number => number * 3))
 
 const person = {
   name: 'Roger',
-  getName () { 
+  getName () {
     return this.name
   }
 }
@@ -122,12 +119,11 @@ console.log(person.getName())
 const x = 'x'
 
 const getX = () => {
-  const x = 'y'
+  const x = 'y' 
   return x
 }
 
 console.log(x, getX())
-
 
 /*
   05
@@ -153,29 +149,29 @@ console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
   - Exiba o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
 
-const convertToHex = colorName => {
+const convertToHex = color => {
   const colors = {
-    'Verde lima': '#32cd32',
-    'Amarelo claro': '#ffffe0',
-    'Marrom amarelado': '#f4a460',
-    'Verde militar': '#78866b',
-    'Turquesa escura': '#00ced1'
+    red: '#FF0000',
+    green: '#00FF00',
+    blue: '#0000FF',
+    black: '#000000',
+    white: '#FFFFFF'
   }
 
-  return colors[colorName] 
-    ? `O hexadecimal para a cor ${colorName} é ${colors[colorName]}`
-    : `Não temos o equivalente hexadecimal para ${colorName}`
+  return colors[color] 
+    ? `O hexadecimal para a cor ${color} é ${colors[color]}` 
+    : `Não temos o equivalente hexadecimal para ${color}`
 }
 
 const colors = [
-  'Verde lima',
-  'Marrom amarelado',
-  'Amarelo',
-  'Verde militar',
-  'Cinza fosco',
-  'Lilás',
-  'Amarelo claro',
-  'Turquesa escura'
+  'red', 
+  'green', 
+  'blue', 
+  'black', 
+  'white', 
+  'purple', 
+  'yellow', 
+  'pink'
 ]
 
 const logColorMessage = color => console.log(convertToHex(color))
@@ -205,81 +201,10 @@ const people = [
   { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' }
 ]
 
-/*
-  Se a propriedade ainda não existir eu tenho que fazer ela armazenar um valor 
-  inicial. Porém, caso ela exista, eu devo acessar o valor que ela tem e somar a 1.
-
-  Curto-circuito é uma expressão que vai retornar OU um valor OU outro valor.
-*/
-
-const createOrIncrementAgesFrequency = (acc, person) => {
-  acc[person.age] = acc[person.age] + 1 || 1
-  return acc  
+const createOrIncrementAgesFrequency = (acc, { age }) => {
+  acc[age] = acc[age] + 1 || 1
+  return acc
 }
 
 const agesFrequency = people.reduce(createOrIncrementAgesFrequency, {})
-
-/*
-  1° Iteração
-  acc = {
-    18: 1,    
-  }
-
-  2° Iteração
-  acc = {
-    18: 1,  
-    19: 1,  
-  }
-
-  3° Iteração
-  acc = {
-    18: 2,  
-    19: 1,  
-  }
-
-  4° Iteração
-  acc = {
-    18: 3,  
-    19: 1,  
-  }
-
-  5° Iteração
-  acc = {
-    18: 3,  
-    19: 1,  
-    20: 1
-  }
-
-  6° Iteração
-  acc = {
-    18: 3,  
-    19: 2,  
-    20: 1
-  }
-*/
-
-/* Solução que eu encontrei
-
-  let eighteenYearsOld = 0
-  let nineteenYearsOld = 0
-  let twentyYearsOld = 0
-
-  const getFrequencyOfAges = (acc, { age }) => {
-    switch (age) {
-      case 18:      
-        acc[age] = ++eighteenYearsOld
-        break
-      case 19:
-        acc[age] = ++nineteenYearsOld
-        break
-      case 20:
-        acc[age] = ++twentyYearsOld    
-    }
-
-    return acc
-  }
-
-  const frequencyOfAges = people.reduce(getFrequencyOfAges, {})
-  console.log(frequencyOfAges)
-
-*/
+console.log(agesFrequency)
