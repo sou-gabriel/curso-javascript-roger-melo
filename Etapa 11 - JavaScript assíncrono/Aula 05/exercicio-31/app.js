@@ -8,17 +8,17 @@
     do GitHub.
 */
 
-const getGitHubProfileData = async username => {
+const fetchGitHubUser = async username => {
   const response = await fetch(`https://api.github.com/users/${username}`)
   return response.json()
 }
 
-const logGitHubProfileData = async username => {
-  const data = await getGitHubProfileData(username)
-  console.log(data)
+const logGitHubUser = async username => {
+  const userData = await fetchGitHubUser(username)
+  console.log(userData)
 }
 
-logGitHubProfileData('sou-gabriel')
+logGitHubUser('sou-gabriel')
 
 /*
   02
@@ -29,9 +29,9 @@ logGitHubProfileData('sou-gabriel')
 */
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const divisibleByTwoAndThree = numbers
-  .filter(number => number % 2 === 0 || number % 3 === 0)
-console.log(divisibleByTwoAndThree)
+const getDivisibleBy2Or3 = number => number % 2 === 0 || number % 3 === 0
+const divisibleBy2Or3 = numbers.filter(getDivisibleBy2Or3)
+console.log(divisibleBy2Or3)
 
 /*
   03
@@ -47,10 +47,14 @@ console.log(divisibleByTwoAndThree)
     - Rafaela => "PRaPfaPePla".
 */
 
-const syllables = ['Ga', 'bri', 'el']
-const nameInPLanguage = syllables.reduce((acc, syllable) => 
-  `${acc}P${syllable}`, '')
-console.log(nameInPLanguage)
+const myName = ['Ga', 'bri', 'el']
+// const name = ['Na', 'tá', 'lia']
+const name2 = ['Ra', 'fa', 'e', 'la']
+const getNameInPLanguage = name => name
+  .reduce((acc, syllable) => `${acc}P${syllable}`, '')
+console.log(getNameInPLanguage(myName))
+// console.log(getNameInPLanguage(name))
+console.log(getNameInPLanguage(name2))
 
 /*
   04
@@ -68,10 +72,12 @@ console.log(nameInPLanguage)
 */
 
 const name = 'Gabriel'
-const splitName = name.split('')
 
-splitName.forEach((letter, index) => 
-  console.log(`"${letter}" é a ${index + 1}ª letra do meu nome.`))
+const logSplittedName = name => name
+  .split('')
+  .forEach((letter, index) => 
+    console.log(`"${letter}" é a ${index + 1}ª letra do meu nome`))
+logSplittedName(name)
 
 /*
   05
@@ -87,9 +93,9 @@ splitName.forEach((letter, index) =>
 */
 
 const person = {
-  name: 'Roger',
-  lastName: 'Melo',
-  age: 32
+  name: 'Gabriel',
+  lastName: 'Ramos',
+  age: 20
 }
 
 console.log(Object.keys(person))
@@ -109,11 +115,10 @@ console.log(Object.keys(person))
 
 const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
 
-const getOccurrencesOfValue = (array, value) => {
-  return array.reduce((acc, item) => value === item ? ++acc : acc, 0)
-}
+const getOccurrences = (array, value) => array
+  .reduce((acc, currentItem) => currentItem === value ? acc + 1 : acc, 0)
 
-console.log(getOccurrencesOfValue(scores, 90))
+console.log(getOccurrences(scores, 100))
 
 /*
   07
@@ -142,18 +147,21 @@ console.log(getOccurrencesOfValue(scores, 90))
 const filter = (array, callback) => {
   let newArray = []
 
-  array.forEach((item, index, array) => {
-    if (callback(item, index, array)) {
+  const filterItem = (item, index, array) => {
+    const itemShouldBeAdded = callback(item, index, array)
+
+    if (itemShouldBeAdded) {
       newArray.push(item)
     }
-  })
+  }
 
+  array.forEach(filterItem)
   return newArray
 }
 
-console.log(filter([1, 2, 3], item => item)) // [1, 2, 3]
+console.log(filter([1, 2, 3], item => item))
 console.log(filter([0, 1, 2], item => item)) // [1, 2]
 console.log(filter([1, 2, 3], item => item < 2)) // [1]
-console.log(filter([1, 2, 3, 5], (item, index) => item === index + 1)) // [1, 2, 3])
-console.log(filter([1, 2, 3, 2, 1, 5], (item, index, array) => 
+console.log(filter([1, 2, 3, 5], (item, index) => item === index + 1)) // [1, 2, 3]
+console.log(filter([1, 2, 3, 2, 1, 5], (item, index, array) =>
   index === array.indexOf(item))) // [1, 2, 3, 5]
