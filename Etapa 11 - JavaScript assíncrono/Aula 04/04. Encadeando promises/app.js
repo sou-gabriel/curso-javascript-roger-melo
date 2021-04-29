@@ -1,17 +1,14 @@
-const getPokemon = url  => {
-  return new Promise((resolved, reject) => {
+const getPokemon = url => {
+  return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest()
 
     request.addEventListener('readystatechange', () => {
-      const isRequestOk = request.readyState === 4 && request.status === 200
-      const isRequestNotOk = request.readyState === 4
-  
-      if (isRequestOk) {
+      if (request.readyState === 4 && request.status === 200) {
         const data = JSON.parse(request.responseText)
-        resolved(data)
+        resolve(data)
       }
-  
-      if (isRequestNotOk) {
+
+      if (request.readyState === 4) {
         reject('Não foi possível obter os dados')
       }
     })
@@ -32,4 +29,3 @@ getPokemon('https://pokeapi.co/api/v2/pokemon/1')
   })
   .then(console.log)  
   .catch(error => console.log(error))
-
