@@ -24,42 +24,42 @@
 const form = document.querySelector('form')
 const GIFSContainer = document.querySelector('div')
 
-const APIKey = 'zXJ5GEYYVyCYsXWOiTOOOOdZsnO2Ytll'
+const APIKey = 'ec92f59pE74aHBuB7o2shh9VnnwgCs7I'
+const getGiphyApiUrl = (GIFName) => 
+  `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=${GIFName}`
 
-const getGIPHYApiUrl = inputValue => 
-  `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=${inputValue}`
-
-const getGIFData = async inputValue => {
+const fetchGIF = async inputValue => {
   try {
-    const GIPHYApiUrl = getGIPHYApiUrl(inputValue)
-    const response = await fetch(GIPHYApiUrl)
+    const giphyApiUrl = getGiphyApiUrl(inputValue)
+    const response = await fetch(giphyApiUrl)
 
     if (!response.ok) {
       throw new Error('Não foi possível obter os dados')
     }
-
+  
     return response.json()
   } catch (error) {
-    alert(`Error: ${error.message}`)
+    alert(error)
   }
 }
 
-const createGIFImage = GIFData => {
-  const GIFUrl = GIFData.data[0].images.downsized.url
-
+const generateGIFImage = (downsizedGIFUrl, GIFData) => {
   const img = document.createElement('img')
-  img.setAttribute('src', GIFUrl)
+
+  img.setAttribute('src', downsizedGIFUrl)
   img.setAttribute('alt', GIFData.data[0].title)
 
   return img
 }
 
 const insertGIFIntoDOM = async inputValue => {
-  const GIFData = await getGIFData(inputValue)
+  const GIFData = await fetchGIF(inputValue)
 
   if (GIFData) {
-    const GIFImage = createGIFImage(GIFData)
-    GIFSContainer.insertAdjacentElement('afterbegin', GIFImage)
+    const downsizedGIFUrl = GIFData.data[0].images.downsized.url
+    const img = generateGIFImage(downsizedGIFUrl, GIFData)
+  
+    GIFSContainer.insertAdjacentElement('afterbegin', img)
   }
 }
 
