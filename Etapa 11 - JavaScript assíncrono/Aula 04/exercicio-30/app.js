@@ -29,7 +29,7 @@ const getUsers = url => new Promise((resolve, reject) => {
   request.send()
 })
 
-const promise = getUsers('https://jsonplaceholder.typicode.com/users')
+getUsers('https://jsonplaceholder.typicode.com/users')
   .then(console.log)
   .catch(console.log)
 
@@ -132,10 +132,9 @@ const nordeste = [
   'Sergipe'
 ]
 const newSudeste = brasil.splice(5, 4)
-
 brasil = brasil.concat(nordeste)
-
 const newBrasil = brasil.map((item, index) => ({ id: index, estado: item }))
+
 const hasThan7Letters = brasil.every(item => item.length > 7)
 const message = hasThan7Letters 
   ? 'Sim, todos os estados tem mais de 7 letras.' 
