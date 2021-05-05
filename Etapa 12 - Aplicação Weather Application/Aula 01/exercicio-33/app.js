@@ -17,8 +17,7 @@ console.log(book)
   - Implemente a função da forma mais concisa que você conseguir.
 */
 
-// ***
-const swap = ([first, , third]) => [third, first]
+const swap = ([firstItem, , thirdItem]) => [thirdItem, firstItem]
 console.log(swap([1, 2, 3]))
 
 /*
@@ -46,9 +45,8 @@ console.log(name)
 */
 
 const colors = ['#FF00FF', ['#FF0D0D', '#0AFA00', '#011EFA'], '#7BF0FF']
-
 const [, [red, green, blue]] = colors
-console.log({ red, green, blue })
+console.log(red, green, blue)
 
 /*
   05
