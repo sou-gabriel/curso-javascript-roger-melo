@@ -1,13 +1,14 @@
-localStorage.setItem('name', 'Gabriel Ramos Nogueira')
-localStorage.setItem('age', '19')
+localStorage.setItem('name', 'Roger')
+localStorage.setItem('age', 32)
 
 let name = localStorage.getItem('name')
 let age = localStorage.getItem('age')
 
-console.log({ name, age })
+console.log(name, age)
 
-// localStorage.removeItem('age')
 localStorage.clear()
+
+// localStorage.removeItem('name')
 
 name = localStorage.getItem('name')
 age = localStorage.getItem('age')
