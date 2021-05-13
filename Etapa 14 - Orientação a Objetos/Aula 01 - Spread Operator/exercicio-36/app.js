@@ -10,9 +10,7 @@
 
 const numbers = [50, 100, 50]
 
-const sum = (x, y, z) => {
-  return x + y + z
-}
+const sum = (x, y, z) => x + y + z
 
 console.log(sum(...numbers))
 
@@ -26,9 +24,8 @@ console.log(sum(...numbers))
 */
 
 const name = 'gabriel'
-const firstLetterCapitalize = [name[0].toUpperCase(), ...name.slice(1)].join('')
-
-console.log(firstLetterCapitalize)
+const capitalizedName = [name[0].toUpperCase(), ...name.slice(1)].join('')
+console.log(capitalizedName)
 
 /*
   03
@@ -56,10 +53,20 @@ console.log(obj)
     criado permaneça intacto.
 */
 
-const third = obj => ({ ...obj, d: 3 }) 
+const third = obj => {
+  return {
+    ...obj,
+    d: 3
+  }
+}
 
-const second = obj => third(obj)
-const first = obj => second(obj)
+const second = obj => {
+  return third(obj)
+}
+
+const first = obj => {
+  return second(obj)
+}
 
 const object = { k: 't' }
 const object2 = first(object)
@@ -97,12 +104,12 @@ const timestamps = [
   }
 ]
 
-const dates = timestamps.reduce((acc, timestamp) => {
+const values = timestamps.reduce((acc, timestamp) => {
   acc[timestamp.date] = timestamp.value
   return acc
 }, {})
 
-console.log(dates)
+console.log(values)
 
 /*
   06
@@ -129,7 +136,8 @@ const oddNumbers = [51, 97, 65, 23]
 
 const forEach = (array, callback) => {
   for (let index = 0; index < array.length; index++) {
-    callback(array[index], index, array)
+    const item = array[index]
+    callback(item, index, array)
   }
 }
 
@@ -139,10 +147,12 @@ const logMessage = (item, index, array) => {
   console.log(message)
 }
 
-const addNumbers = item => accumulator += item
+const sumItemsOfArray = item => {
+  accumulator += item
+}
 
 forEach(oddNumbers, logMessage)
-forEach(oddNumbers, addNumbers)
+forEach(oddNumbers, sumItemsOfArray)
 
 console.log(accumulator)
 
@@ -176,32 +186,36 @@ console.log(accumulator)
 */
 
 const slides = document.querySelectorAll('[data-js="carousel__item"]')
-const buttonNext = document.querySelector('[data-js="carousel__button--next"]')
+const nextButton = document.querySelector('[data-js="carousel__button--next"]')
 const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
 
 const lastSlideIndex = slides.length - 1
 let currentSlideIndex = 0
 
-const manipulateSlideClasses = index => {
+const manipulateClasses = correctSlideIndex => {
   slides.forEach(slide => {
     slide.classList.remove('carousel__item--visible')
   })
 
-  slides[index].classList.add('carousel__item--visible')
+  slides[correctSlideIndex].classList.add('carousel__item--visible')
 }
 
-buttonNext.addEventListener('click', () => {
-  const correctSlideIndex = currentSlideIndex === lastSlideIndex 
+nextButton.addEventListener('click', () => {
+  const isLastSlide = currentSlideIndex === lastSlideIndex 
+
+  const correctSlideIndex = isLastSlide
     ? currentSlideIndex = 0 
     : ++currentSlideIndex
 
-  manipulateSlideClasses(correctSlideIndex)
+  manipulateClasses(correctSlideIndex)
 })
 
-prevButton.addEventListener('click', () => {
-  const correctSlideIndex = currentSlideIndex === 0 
+prevButton.addEventListener('click', () => { 
+  const isFirstSlide = currentSlideIndex === 0
+
+  const correctSlideIndex = isFirstSlide 
     ? currentSlideIndex = lastSlideIndex 
     : --currentSlideIndex
 
-  manipulateSlideClasses(correctSlideIndex)
-}) 
+  manipulateClasses(correctSlideIndex)
+})
