@@ -4,18 +4,18 @@
   - Implemente uma função que recebe o nome da key de um item da localStorage 
     e retorna o valor da key parseado para objeto javascript.
 */
-
+ 
 const myObj = { x: 'x', y: 'y' }
-const myObjAsJSON = JSON.stringify(myObj, null, 2)
+const myObjAsJSON = JSON.stringify(myObj)
 
-localStorage.setItem('myObj', myObjAsJSON)
+localStorage.setItem('myKey', myObjAsJSON)
 
-const getObjectFromLocalStorage = keyName => {
-  const keyValue = localStorage.getItem(keyName)
+const getObjectFromLocalStorage = key => {
+  const keyValue = localStorage.getItem(key)
   return JSON.parse(keyValue)
 }
 
-console.log(getObjectFromLocalStorage('myObj'))
+console.log(getObjectFromLocalStorage('myKey'))
 
 /*
   02
@@ -30,11 +30,11 @@ console.log(getObjectFromLocalStorage('myObj'))
   Dica: pesquise por valueAsNumber.
 */
 
-// const input = document.querySelector('[data-js="input"]')
+const input = document.querySelector('[data-js="input"]')
 
-// input.addEventListener('input', event => {
-//   console.log(typeof event.target.valueAsNumber)
-// })
+input.addEventListener('input', event => {
+  console.log(event.target.valueAsNumber)
+})
 
 /*
   03
@@ -61,11 +61,8 @@ const multiplyFive = num => num * 5
 
 const addTen = num => num + 10
 
-const combineOperations = (initialValue, arrOfFuncs) => {
-  return arrOfFuncs.reduce((acc, func) => {
-    return func(acc)
-  }, initialValue)
-}
+const combineOperations = (initialValue, arrOfFuncs) => 
+  arrOfFuncs.reduce((acc, func) => func(acc), initialValue)
 
 console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
 console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
@@ -123,7 +120,6 @@ if (searchAlbumExistsInArray) {
 */
 
 const obj = {
-  prop0: () => {},
   prop1: 'a',
   prop2: 'b',
   prop3: null,
@@ -134,22 +130,18 @@ const obj = {
   prop8: { a: 'x', b: 'y' },
 }
 
-// const objAsJSON = JSON.stringify(obj)
-// const objCopy = JSON.parse(objAsJSON)
-// console.log(objCopy)
-
 const objCopy = {
   ...obj,
-  prop0: () => {},
-  prop6: [
-    obj.prop6[0],
-    { ...obj.prop6[1] }
+  prop6: [ 
+    obj.prop6[0], 
+    { ...obj.prop6[1] } 
   ],
   prop8: { ...obj.prop8 }
 }
 
-console.log(obj, objCopy)
- 
+console.log(objCopy)
+console.log(objCopy.prop6[1] === obj.prop6[1])
+
 /*
   06
 
@@ -165,18 +157,20 @@ const createElement = (elementName, attributes) => {
   const element = document.createElement(elementName)
   const attributesAsArray = Object.entries(attributes)
   
-  attributesAsArray.forEach(([key, value]) => element.setAttribute(key, value))
+  const setAttributeToElement = ([key, value]) => 
+    element.setAttribute(key, value)
+  attributesAsArray.forEach(setAttributeToElement)
 
   return element
 }
 
-const input = createElement('input', {
-  type: 'radio',
-  id: 'input',
-  checked: true
-})
-
-console.log(input)
+console.log(createElement('input', {
+  type: 'text',
+  id: 'username',
+  name: 'username',
+  'data-js': 'input-username',
+  placeholder: 'Nome de usuário'
+}))
 
 /*
   07
