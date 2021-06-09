@@ -12,16 +12,17 @@
     versão deve fazer o mesmo que a função anterior faz, mas de forma diferente.
 */
 
-// const getReverseString = string => {
-//   return string.split('').reverse().join('')
-// }
+const getReversedString = string => string
+  .split('')
+  .reverse()
+  .join('')
+  
+const reverseString = string => string
+  .split('')
+  .reduce((acc, letter) => letter + acc, '')
 
-const getReverseString = string => {
-  return string.split('').reduce((acc, item) => `${item}${acc}`, '')
-}
-
-console.log(getReverseString('123'))
-console.log(getReverseString('abc'))
+console.log(getReversedString('123'))
+console.log(reverseString('abc'))
 
 /*
   02
@@ -31,6 +32,9 @@ console.log(getReverseString('abc'))
 
 const numbers = [5, 20, 7, 32, 47, 15, 83, 91, 27, 33]
 const foundNumber = numbers.includes(15)
+
+console.log(foundNumber)
+
 // let foundNumber = false
 
 // numbers.forEach(number => {
@@ -39,7 +43,6 @@ const foundNumber = numbers.includes(15)
 //   }
 // })
 
-console.log(foundNumber)
 
 /*
   03
