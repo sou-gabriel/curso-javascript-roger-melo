@@ -24,8 +24,9 @@ console.log(sum(...numbers))
 */
 
 const name = 'gabriel'
-const capitalizedName = [name[0].toUpperCase(), ...name.slice(1)].join('')
-console.log(capitalizedName)
+const capitalizeName = [name[0].toUpperCase(), ...name.slice(1)].join('')
+
+console.log(capitalizeName)
 
 /*
   03
@@ -36,15 +37,15 @@ console.log(capitalizedName)
   - Não utilize as estruturas condicionais if ou switch.
 */
 
-const randomNumber = Math.round(Math.random() * 100)
+// const randomNumber = Math.round(Math.random() * 100)
 
-const obj = {
-  a: 1,
-  b: 2,
-  ...(randomNumber > 50 ? { c: 3 } : { d: 4 })
-}
+// const obj = {
+//   a: 1,
+//   b: 2,
+//   ...(randomNumber > 50 ? { c: 3 } : { d: 4 })
+// }
 
-console.log(obj)
+// console.log(obj)
 
 /*
   04
@@ -53,20 +54,11 @@ console.log(obj)
     criado permaneça intacto.
 */
 
-const third = obj => {
-  return {
-    ...obj,
-    d: 3
-  }
-}
+const third = obj => ({ ...obj, d: 3 })
 
-const second = obj => {
-  return third(obj)
-}
+const second = obj => third(obj)
 
-const first = obj => {
-  return second(obj)
-}
+const first = obj => second(obj)
 
 const object = { k: 't' }
 const object2 = first(object)
@@ -104,8 +96,8 @@ const timestamps = [
   }
 ]
 
-const values = timestamps.reduce((acc, timestamp) => {
-  acc[timestamp.date] = timestamp.value
+const values = timestamps.reduce((acc, { date, value }) => {
+  acc[date] = value
   return acc
 }, {})
 
@@ -134,26 +126,26 @@ console.log(values)
 let accumulator = 0
 const oddNumbers = [51, 97, 65, 23]
 
-const forEach = (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    const item = array[index]
-    callback(item, index, array)
+const forEach = (arr, func) => {
+  for (let index = 0; index < arr.length; index++) {
+    const item = arr[index]
+    func(item, index, arr)
   }
 }
 
-const logMessage = (item, index, array) => {
-  const message = 
-    `"${item}" é o ${index + 1}º item do array [${array.join(', ')}]`
-  console.log(message)
-}
-
-const sumItemsOfArray = item => {
+const sumArrayItems = item => {
   accumulator += item
 }
 
-forEach(oddNumbers, logMessage)
-forEach(oddNumbers, sumItemsOfArray)
+const logMessage = (item, index, array) => {
+  const position = index + 1
+  const arrayAsString = array.join(', ')
 
+  console.log(`"${item}" é o ${position}º item do array [${arrayAsString}]`)
+}
+
+forEach(oddNumbers, sumArrayItems)
+forEach(oddNumbers, logMessage)
 console.log(accumulator)
 
 /*
@@ -192,7 +184,7 @@ const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
 const lastSlideIndex = slides.length - 1
 let currentSlideIndex = 0
 
-const manipulateClasses = correctSlideIndex => {
+const manipulateSlidesClasses = correctSlideIndex => {
   slides.forEach(slide => {
     slide.classList.remove('carousel__item--visible')
   })
@@ -200,22 +192,23 @@ const manipulateClasses = correctSlideIndex => {
   slides[correctSlideIndex].classList.add('carousel__item--visible')
 }
 
-nextButton.addEventListener('click', () => {
-  const isLastSlide = currentSlideIndex === lastSlideIndex 
-
-  const correctSlideIndex = isLastSlide
+const isLastSlide = currentSlideIndex === lastSlideIndex
+const showNextSlide = () => {
+  const correctSlideIndex =  isLastSlide 
     ? currentSlideIndex = 0 
     : ++currentSlideIndex
 
-  manipulateClasses(correctSlideIndex)
-})
+  manipulateSlidesClasses(correctSlideIndex)
+}
 
-prevButton.addEventListener('click', () => { 
-  const isFirstSlide = currentSlideIndex === 0
-
-  const correctSlideIndex = isFirstSlide 
-    ? currentSlideIndex = lastSlideIndex 
+const showPreviousSlide = () => {
+  const isFirstSlide = currentSlideIndex === 0 
+  const correctSlideIndex = isFirstSlide
+    ? currentSlideIndex = lastIndex 
     : --currentSlideIndex
 
-  manipulateClasses(correctSlideIndex)
-})
+  manipulateSlidesClasses(correctSlideIndex)
+}
+
+nextButton.addEventListener('click', showNextSlide)
+prevButton.addEventListener('click', showPreviousSlide)
