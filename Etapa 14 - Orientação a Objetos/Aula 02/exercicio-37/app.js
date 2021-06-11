@@ -9,7 +9,7 @@ class Animal {
   constructor (name) {
     this.name = name
   }
-}
+} 
 
 class Rabbit extends Animal {
   constructor (name) {
@@ -28,24 +28,27 @@ let rabbit = new Rabbit('White Rabbit')
 */
 
 class Counter {
-  constructor () {
-    this.value = 0
+  #count = 0
+
+  get value () {
+    return this.#count
   }
 
-  getValue () { 
-    return this.value
+  set newValue (value) {
+    this.#count = value
   }
 
   increment () {
-    this.value++
+    this.#count++
   }
 }
 
 const counter = new Counter()
 
-console.log(counter.getValue())
+console.log(counter.value)
+counter.newValue = 7
 counter.increment()
-console.log(counter.getValue())
+console.log(counter.value)
 
 /*
   03
@@ -64,6 +67,8 @@ const values = [
   () => {}
 ]
 
+// const Boolean = item => ...
+
 const truthyValues = values.filter(Boolean)
 
 console.log(truthyValues)
@@ -79,7 +84,7 @@ console.log(truthyValues)
 */
 
 const formatTimeUnits = units => units.map(unit => 
-  unit < 10 ? `0${unit}` : unit) 
+  unit < 10 ? `0${unit}` : unit)
 
 const getTime = () => {
   const date = new Date()
@@ -111,8 +116,10 @@ class Clock {
   }
 
   start () {
+    const oneSecond = 1000
+
     this.render()
-    this.timer = setInterval(() => this.render(), 1000)
+    this.timer = setInterval(() => this.render(), oneSecond)
   }
 
   stop () {
@@ -129,16 +136,15 @@ class ExtendedClock extends Clock {
   }
 
   start () {
-    const oneSecond = this.precision
-
     this.render()
-    this.timer = setInterval(() => this.render(), oneSecond)
+    this.timer = setInterval(() => this.render(), this.precision)
   }
 }
 
-// const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
+const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
 
-// clock.start()
+clock.start()
+clock.stop()
 
 /*
   05
@@ -187,30 +193,29 @@ textArea.addEventListener('input', showCounterParagraph)
     reduce e um link para a documentação do método no MDN.
 */
 
-const reduce = (array, reducer, initialValue) => {
-  let accumulator = initialValue
-
-  const accumulateCallbackReturn = (item, index, array) => {
-    accumulator = reducer(accumulator, item, index, array)
-  }
+const reduce = (arr, func, initialValue) => {
+  let acc = initialValue
   
-  array.forEach(accumulateCallbackReturn)
+  const accumulateCallbackReturn = (item, index, array) => {
+    acc = func(acc, item, index, array)
+  }
 
-  return accumulator
-}
+  arr.forEach(accumulateCallbackReturn)
 
-const createItemBasedProperty = (acc, item) => {
-  acc['number-' + item] = item
   return acc
 }
 
-const sumIndex = (acc, _, index) => acc + index
-const sumItems = (acc, item) => acc + item
-const sumItemsUsingArrayParameter = (acc, _, index, array) => acc + array[index]
+const createItemsBasedProperties = (acc, item) => {
+  acc['number' + item] = item
+  return acc
+}
 
+const sumItems = (acc, item) => acc + item
+const itemsIndexSum = (acc, _, index) => acc + index
+const sumItemsUsingArrayParam = (acc, _, index, array) => acc + array[index]
 
 console.log(reduce([1, 2, 3], sumItems, 0))
 console.log(reduce([2, 3, 4], sumItems, 0))
-console.log(reduce([1, 2], createItemBasedProperty, {}))
-console.log(reduce([1, 2], sumIndex, 0))
-console.log(reduce([1, 2], sumItemsUsingArrayParameter, 0))
+console.log(reduce([1, 2], createItemsBasedProperties, {}))
+console.log(reduce([1, 2], itemsIndexSum, 0)) 
+console.log(reduce([1, 2], sumItemsUsingArrayParam, 0))
