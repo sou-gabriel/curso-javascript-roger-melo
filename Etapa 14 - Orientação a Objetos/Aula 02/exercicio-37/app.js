@@ -50,6 +50,7 @@ counter.newValue = 7
 counter.increment()
 console.log(counter.value)
 
+
 /*
   03
 
